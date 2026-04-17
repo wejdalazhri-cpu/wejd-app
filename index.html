@@ -1,0 +1,2469 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>معرض الكتاب | جامعة وادي الشاطئ | اتحاد قسم الهندسة الكهربائية والإلكترونية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;600;700;800&display=swap');
+
+        :root {
+            --primary: #FFD700;
+            --primary-dark: #FFA500;
+            --primary-light: #FFE55C;
+            --bg-dark: #0a0e17;
+            --bg-darker: #070a10;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --text-muted: rgba(255, 255, 255, 0.5);
+            --accent-blue: #00d4ff;
+            --accent-purple: #9d4edd;
+            --accent-pink: #ff006e;
+            --glass: rgba(255, 255, 255, 0.05);
+            --shadow-gold: rgba(255, 215, 0, 0.3);
+            --saved-badge: #ff006e;
+            --mobile-highlight: #FF6B35;
+            --mobile-success: #00C853;
+            --mobile-bg: #0d1117;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Noto Kufi Arabic', sans-serif;
+            background: var(--mobile-bg);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .aurora-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(157, 78, 221, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 70%),
+                var(--mobile-bg);
+        }
+
+        .aurora-bg::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(157, 78, 221, 0.4) 0%, transparent 30%),
+                radial-gradient(circle at 70% 70%, rgba(0, 212, 255, 0.3) 0%, transparent 30%);
+            animation: aurora 20s ease-in-out infinite;
+            filter: blur(60px);
+        }
+
+        @keyframes aurora {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+
+        .app-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 100px;
+        }
+
+        @media (min-width: 768px) {
+            .app-container {
+                max-width: 900px;
+                padding: 30px;
+            }
+        }
+
+        .loader {
+            position: fixed;
+            inset: 0;
+            background: var(--mobile-bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+
+        .loader.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-book {
+            width: 80px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 4px 12px 12px 4px;
+            position: relative;
+            animation: bookFloat 2s ease-in-out infinite;
+            box-shadow: 0 20px 40px var(--shadow-gold), inset 4px 0 10px rgba(0,0,0,0.1);
+        }
+
+        .loader-book::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0.3), transparent);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .loader-book::after {
+            content: '';
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            width: 40px;
+            height: 6px;
+            background: rgba(255,255,255,0.4);
+            border-radius: 3px;
+            box-shadow: 0 15px 0 rgba(255,255,255,0.4), 0 30px 0 rgba(255,255,255,0.4);
+        }
+
+        @keyframes bookFloat {
+            0%, 100% { transform: translateY(0) rotateY(0deg); }
+            50% { transform: translateY(-20px) rotateY(10deg); }
+        }
+
+        .loader-text {
+            margin-top: 30px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            letter-spacing: 2px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .page {
+            display: none;
+            opacity: 0;
+            transform: translateX(30px) scale(0.98);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform, opacity;
+        }
+
+        .page.active {
+            display: block;
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+
+        .page.exit {
+            opacity: 0;
+            transform: translateX(-30px) scale(0.98);
+        }
+
+        .bento-grid {
+            display: grid;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
+        .bento-item {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 20px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .bento-item {
+                padding: 25px;
+                border-radius: 28px;
+            }
+        }
+
+        .bento-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .bento-item:hover::before {
+            opacity: 1;
+        }
+
+        .bento-item:active {
+            transform: scale(0.98);
+        }
+
+        .bento-large {
+            grid-column: span 1;
+        }
+
+        @media (min-width: 768px) {
+            .bento-large {
+                grid-column: span 2;
+            }
+        }
+
+        /* قسم الشعارات الجديد باستخدام الرموز التعبيرية */
+        .logos-section {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        @media (min-width: 768px) {
+            .logos-section {
+                gap: 50px;
+            }
+        }
+
+        .logo-wrapper {
+            text-align: center;
+            transition: transform 0.3s;
+            flex: 1;
+            max-width: 140px;
+        }
+
+        .logo-wrapper:hover {
+            transform: translateY(-5px);
+        }
+
+        .logo-emoji {
+            width: 80px;
+            height: 80px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            font-size: 42px;
+        }
+
+        @media (min-width: 768px) {
+            .logo-emoji {
+                width: 100px;
+                height: 100px;
+                border-radius: 24px;
+                font-size: 52px;
+            }
+        }
+
+        .logo-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        @media (min-width: 768px) {
+            .logo-label {
+                font-size: 14px;
+            }
+        }
+
+        .edition-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,165,0,0.1));
+            border: 1px solid rgba(255,215,0,0.3);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        @media (min-width: 768px) {
+            .edition-badge {
+                font-size: 15px;
+                padding: 10px 25px;
+            }
+        }
+
+        .main-title {
+            font-size: 26px;
+            font-weight: 800;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #fff 0%, var(--primary) 50%, #fff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 3s linear infinite;
+            background-size: 200% auto;
+        }
+
+        @media (min-width: 768px) {
+            .main-title {
+                font-size: 42px;
+            }
+        }
+
+        @keyframes shimmer {
+            to { background-position: 200% center; }
+        }
+
+        .slogan {
+            font-size: 15px;
+            color: var(--text-secondary);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        @media (min-width: 768px) {
+            .slogan {
+                font-size: 20px;
+            }
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        @media (min-width: 768px) {
+            .stats-row {
+                gap: 20px;
+            }
+        }
+
+        .stat-pill {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            padding: 10px 16px;
+            border-radius: 50px;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-secondary);
+        }
+
+        @media (min-width: 768px) {
+            .stat-pill {
+                font-size: 14px;
+                padding: 12px 24px;
+            }
+        }
+
+        .stat-pill i {
+            color: var(--primary);
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 16px 30px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border: none;
+            border-radius: 16px;
+            color: #1a1a2e;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px var(--shadow-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        @media (min-width: 768px) {
+            .btn-primary {
+                padding: 18px 40px;
+                font-size: 17px;
+                border-radius: 20px;
+            }
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+        }
+
+        .library-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 18px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        @media (min-width: 768px) {
+            .library-card {
+                padding: 22px;
+                margin-bottom: 15px;
+            }
+        }
+
+        .library-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(255,215,0,0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .library-card:hover {
+            transform: translateX(-5px);
+            border-color: rgba(255,215,0,0.3);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .library-card:hover::after {
+            opacity: 1;
+        }
+
+        .lib-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            flex-shrink: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        @media (min-width: 768px) {
+            .lib-icon {
+                width: 65px;
+                height: 65px;
+                font-size: 32px;
+            }
+        }
+
+        .lib-info {
+            flex: 1;
+        }
+
+        .lib-name {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        @media (min-width: 768px) {
+            .lib-name {
+                font-size: 18px;
+            }
+        }
+
+        .lib-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        @media (min-width: 768px) {
+            .lib-meta {
+                font-size: 13px;
+            }
+        }
+
+        .lib-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .lib-arrow {
+            width: 38px;
+            height: 38px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 768px) {
+            .lib-arrow {
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        .library-card:hover .lib-arrow {
+            background: var(--primary);
+            color: #1a1a2e;
+            transform: translateX(-3px);
+        }
+
+        .search-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 14px 20px 14px 50px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            color: white;
+            font-family: inherit;
+            font-size: 14px;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        @media (min-width: 768px) {
+            .search-box {
+                padding: 16px 25px 16px 55px;
+                font-size: 16px;
+            }
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255,255,255,0.08);
+            box-shadow: 0 0 20px rgba(255,215,0,0.1);
+        }
+
+        .search-box::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        @media (min-width: 768px) {
+            .search-icon {
+                left: 22px;
+            }
+        }
+
+        .books-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        @media (min-width: 768px) {
+            .books-container {
+                max-height: 600px;
+                gap: 15px;
+            }
+        }
+
+        .book-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s;
+            animation: slideIn 0.4s ease-out;
+            position: relative;
+        }
+
+        @media (min-width: 768px) {
+            .book-item {
+                padding: 18px;
+                gap: 15px;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .book-item:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(255,215,0,0.2);
+            transform: translateX(5px);
+        }
+
+        .book-cover {
+            width: 50px;
+            height: 65px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+            background-size: cover;
+            background-position: center;
+        }
+
+        @media (min-width: 768px) {
+            .book-cover {
+                width: 60px;
+                height: 80px;
+                font-size: 28px;
+            }
+        }
+
+        .book-cover::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.2), rgba(0,0,0,0.1));
+            z-index: 1;
+        }
+
+        .book-cover i, .book-cover span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .book-details {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .book-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        @media (min-width: 768px) {
+            .book-title {
+                font-size: 16px;
+            }
+        }
+
+        .book-author {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        @media (min-width: 768px) {
+            .book-author {
+                font-size: 12px;
+            }
+        }
+
+        .book-price {
+            font-size: 13px;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        @media (min-width: 768px) {
+            .book-price {
+                font-size: 14px;
+            }
+        }
+
+        .save-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            border: 2px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.05);
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        @media (min-width: 768px) {
+            .save-btn {
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        .save-btn:hover {
+            border-color: var(--saved-badge);
+            color: var(--saved-badge);
+            transform: scale(1.1);
+        }
+
+        .save-btn.saved {
+            background: linear-gradient(135deg, var(--saved-badge), #ff4081);
+            border-color: var(--saved-badge);
+            color: white;
+            animation: savePulse 0.5s ease;
+            box-shadow: 0 4px 15px rgba(255, 0, 110, 0.4);
+        }
+
+        @keyframes savePulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .save-btn.saved:hover {
+            background: linear-gradient(135deg, #ff4081, var(--saved-badge));
+            transform: scale(1.05);
+        }
+
+        .saved-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--saved-badge);
+            color: white;
+            font-size: 10px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            box-shadow: 0 2px 10px rgba(255,0,110,0.5);
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(20, 25, 35, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 12px 20px;
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            max-width: 95%;
+        }
+
+        @media (min-width: 768px) {
+            .bottom-nav {
+                gap: 40px;
+                padding: 15px 35px;
+                border-radius: 25px;
+            }
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: var(--text-secondary);
+            font-size: 10px;
+            padding: 5px 10px;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        @media (min-width: 768px) {
+            .nav-item {
+                font-size: 12px;
+                gap: 6px;
+                padding: 8px 15px;
+            }
+        }
+
+        .nav-item i {
+            font-size: 20px;
+            transition: all 0.3s;
+        }
+
+        @media (min-width: 768px) {
+            .nav-item i {
+                font-size: 22px;
+            }
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .nav-item.active i {
+            transform: translateY(-3px);
+            filter: drop-shadow(0 5px 10px rgba(255,215,0,0.4));
+        }
+
+        .saved-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .saved-count {
+            background: linear-gradient(135deg, var(--saved-badge), #ff4081);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(255,0,110,0.3);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+        }
+
+        .empty-state i {
+            font-size: 60px;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+
+        @media (min-width: 768px) {
+            .empty-state i {
+                font-size: 80px;
+            }
+        }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(5px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, rgba(30,35,45,0.98), rgba(20,25,35,0.98));
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 30px;
+            width: 90%;
+            max-width: 320px;
+            text-align: center;
+            transform: scale(0.9);
+            transition: transform 0.3s;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+
+        @media (min-width: 768px) {
+            .modal-content {
+                max-width: 400px;
+                padding: 40px;
+            }
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .qr-container {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            margin: 20px 0;
+            display: inline-block;
+        }
+
+        .dev-card {
+            background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(157,78,221,0.15));
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        @media (min-width: 768px) {
+            .dev-card {
+                padding: 30px;
+            }
+        }
+
+        .dev-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .dev-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .dev-avatar {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            border: 3px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 25px rgba(0,212,255,0.3);
+        }
+
+        @media (min-width: 768px) {
+            .dev-avatar {
+                width: 80px;
+                height: 80px;
+                font-size: 36px;
+            }
+        }
+
+        .dev-name {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        @media (min-width: 768px) {
+            .dev-name {
+                font-size: 18px;
+            }
+        }
+
+        .dev-role {
+            font-size: 12px;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        @media (min-width: 768px) {
+            .dev-role {
+                font-size: 14px;
+            }
+        }
+
+        .dev-email {
+            font-size: 11px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        @media (min-width: 768px) {
+            .dev-email {
+                font-size: 13px;
+            }
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { 
+            background: rgba(255,215,0,0.3); 
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,215,0,0.5); }
+
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: linear-gradient(135deg, var(--mobile-success), #00b248);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            z-index: 10000;
+            opacity: 0;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            font-size: 14px;
+        }
+
+        .toast.error {
+            background: linear-gradient(135deg, var(--saved-badge), #c51162);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        @media (min-width: 768px) {
+            .toast {
+                bottom: 120px;
+                padding: 16px 32px;
+                font-size: 16px;
+            }
+        }
+
+        .glow-text {
+            text-shadow: 0 0 20px rgba(255,215,0,0.5);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .clear-saved {
+            background: linear-gradient(135deg, rgba(255,0,110,0.1), rgba(255,0,110,0.2));
+            border: 1px solid rgba(255,0,110,0.3);
+            color: var(--saved-badge);
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .clear-saved:hover {
+            background: linear-gradient(135deg, rgba(255,0,110,0.2), rgba(255,0,110,0.3));
+            transform: scale(1.05);
+        }
+
+        .save-status {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 14px;
+            height: 14px;
+            background: var(--mobile-success);
+            border-radius: 50%;
+            border: 2px solid var(--mobile-bg);
+            display: none;
+        }
+
+        .save-status.active {
+            display: block;
+            animation: statusPulse 2s infinite;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+        }
+
+        @media (max-width: 767px) {
+            .book-item {
+                padding: 16px;
+            }
+            .book-title {
+                font-size: 15px;
+                font-weight: 700;
+            }
+            .save-btn {
+                width: 44px;
+                height: 44px;
+                border-radius: 14px;
+            }
+            .save-btn i {
+                font-size: 18px;
+            }
+            .library-card {
+                padding: 20px;
+            }
+            .lib-name {
+                font-size: 16px;
+            }
+            .text-secondary {
+                color: rgba(255,255,255,0.85) !important;
+            }
+            .stat-pill {
+                background: rgba(255,255,255,0.1);
+                border-color: rgba(255,255,255,0.15);
+            }
+        }
+
+        /* عنوان اتحاد قسم الهندسة الكهربائية والإلكترونية */
+        .union-title {
+            font-size: 16px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--accent-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-top: 5px;
+        }
+    </style>
+    <base target="_blank">
+</head>
+<body>
+    <div class="aurora-bg"></div>
+    <div class="particles" id="particles"></div>
+
+    <div class="loader" id="loader">
+        <div class="loader-book"></div>
+        <div class="loader-text">جاري تحميل المعرض...</div>
+    </div>
+
+    <div class="app-container">
+        <!-- الصفحة الرئيسية -->
+        <div id="homePage" class="page active">
+            <div class="bento-grid">
+                <div class="bento-item" style="grid-column: span 1;">
+                    <div class="logos-section">
+                        <div class="logo-wrapper">
+                            <div class="logo-emoji">
+                                🏛️
+                            </div>
+                            <div class="logo-label">جامعة وادي الشاطئ</div>
+                        </div>
+                        <div class="logo-wrapper">
+                            <div class="logo-emoji">
+                                ⚡
+                            </div>
+                            <div class="logo-label">اتحاد قسم الهندسة الكهربائية والإلكترونية</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento-item bento-large" style="text-align: center; padding: 35px 25px;">
+                    <div class="edition-badge">
+                        <i class="fas fa-crown"></i> الدورة الثالثة
+                    </div>
+                    <h1 class="main-title glow-text">معرض الكتاب</h1>
+                    <p class="slogan">"بالعلم نرتقي"</p>
+
+                    <div class="stats-row">
+                        <div class="stat-pill"><i class="fas fa-building"></i> <span id="librariesCount">5</span> دور نشر</div>
+                        <div class="stat-pill"><i class="fas fa-book"></i> <span id="totalBooksCount">0</span> كتاب</div>
+                        <div class="stat-pill" id="savedCountPill" style="display: none;">
+                            <i class="fas fa-heart" style="color: var(--saved-badge);"></i>
+                            <span id="savedCountText">0 محفوظ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento-item" style="grid-column: span 1; padding: 0; overflow: visible;">
+                    <button class="btn-primary" onclick="navigateTo('libraries')">
+                        <span>استكشف المعرض</span>
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                </div>
+
+                <div class="bento-item" style="grid-column: span 1;">
+                    <div class="dev-card">
+                        <div class="dev-content">
+                            <div class="dev-avatar">👨‍💻</div>
+                            <div class="dev-name">وجد حسن الأزهري</div>
+                            <div class="dev-role">مطور التطبيق</div>
+                            <div class="dev-email">
+                                <i class="fas fa-envelope"></i> wa.abdalsalam@wau.edu.ly
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- صفحة المكتبات -->
+        <div id="librariesPage" class="page">
+            <div class="bento-item" style="margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h2 style="font-size: 18px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-store" style="color: var(--primary);"></i>
+                        دور النشر المشاركة
+                    </h2>
+                    <span style="font-size: 13px; color: var(--text-secondary);"><span id="librariesCountBottom">5</span> دور</span>
+                </div>
+            </div>
+            <div id="librariesList"></div>
+        </div>
+
+        <!-- صفحة الكتب -->
+        <div id="booksPage" class="page">
+            <div class="bento-item" style="margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h2 id="booksTitle" style="font-size: 16px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-book-open" style="color: var(--primary);"></i>
+                        <span>الكتب</span>
+                    </h2>
+                    <button onclick="navigateTo('libraries')" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 8px 15px; border-radius: 12px; cursor: pointer; font-family: inherit; font-size: 12px; display: flex; align-items: center; gap: 5px;">
+                        <i class="fas fa-arrow-right"></i> رجوع
+                    </button>
+                </div>
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-box" id="searchInput" placeholder="ابحث عن كتاب أو مؤلف...">
+                </div>
+            </div>
+            <div id="booksList" class="books-container"></div>
+        </div>
+
+        <!-- صفحة المحفوظات -->
+        <div id="savedPage" class="page">
+            <div class="bento-item" style="margin-bottom: 20px;">
+                <div class="saved-header">
+                    <h2 style="font-size: 18px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-heart" style="color: var(--saved-badge);"></i>
+                        الكتب المحفوظة
+                    </h2>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span class="saved-count" id="savedCountBadge">0</span>
+                        <button class="clear-saved" onclick="clearAllSaved()" id="clearBtn" style="display: none;">
+                            <i class="fas fa-trash"></i> مسح الكل
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="savedList" class="books-container"></div>
+        </div>
+
+        <!-- شريط التنقل -->
+        <div class="bottom-nav" id="bottomNav" style="display: none;">
+            <div class="nav-item active" onclick="navigateTo('home')" data-page="home">
+                <i class="fas fa-home"></i>
+                <span>الرئيسية</span>
+            </div>
+            <div class="nav-item" onclick="navigateTo('libraries')" data-page="libraries">
+                <i class="fas fa-store"></i>
+                <span>المكتبات</span>
+            </div>
+            <div class="nav-item" onclick="navigateTo('saved')" data-page="saved">
+                <i class="fas fa-heart"></i>
+                <span>المحفوظات</span>
+                <span class="saved-badge" id="navBadge" style="display: none;">0</span>
+            </div>
+            <div class="nav-item" onclick="showQR()">
+                <i class="fas fa-qrcode"></i>
+                <span>باركود</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- مودال الباركود -->
+    <div class="modal-overlay" id="qrModal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <h3 style="margin-bottom: 10px; color: var(--primary);">
+                <i class="fas fa-qrcode"></i> باركود المعرض
+            </h3>
+            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 20px;">
+                امسح للوصول السريع إلى المعرض
+            </p>
+            <div class="qr-container">
+                <div id="qrcode"></div>
+            </div>
+            <button class="btn-primary btn-secondary" onclick="copyLink()" style="margin-top: 15px;">
+                <i class="fas fa-copy"></i> نسخ الرابط
+            </button>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script>
+        // ============================================================
+        // جميع الكتب الحقيقية من الملفات المرفقة
+        // تم ترتيب المكتبات حسب الطلب: علاء الدين أولاً ثم دار الحكمة
+        // ============================================================
+
+        // ألوان الأغلفة حسب التصنيف
+        const coverColors = {
+            'ادارة': '#4FC3F7',
+            'قانون': '#9C27B0',
+            'علوم': '#4CAF50',
+            'ادب': '#E91E63',
+            'لغة': '#3F51B5',
+            'تاريخ': '#795548',
+            'فقه': '#009688',
+            'حديث': '#FF9800',
+            'تفسير': '#8BC34A',
+            'سيرة': '#FF5722',
+            'عقيدة': '#673AB7',
+            'نفس': '#00BCD4',
+            'اقتصاد': '#FFC107',
+            'هندسة': '#2196F3',
+            'طب': '#F44336',
+            'كيمياء': '#4CAF50',
+            'فيزياء': '#00BCD4',
+            'رياضيات': '#9C27B0',
+            'تربية': '#FF9800',
+            'جغرافيا': '#795548',
+            'حاسوب': '#2196F3',
+            'تسويق': '#FF6B35',
+            'مالية': '#FFC107',
+            'محاسبة': '#00BCD4',
+            'سياحة': '#FF9800',
+            'اعلام': '#E91E63',
+            'فلسفة': '#673AB7',
+            'فنون': '#FF5722',
+            'بيئة': '#4CAF50',
+            'زراعة': '#8BC34A',
+            'سياسة': '#FF6B35',
+            'قرآن': '#009688',
+            'تطوير': '#2196F3',
+            'فكر': '#9C27B0',
+            'نقد': '#E91E63',
+            'رياضة': '#FF9800'
+        };
+
+        function getCoverColor(category) {
+            return coverColors[category] || '#9d4edd';
+        }
+
+        // ========== مكتبة علاء الدين (150 كتاباً من الملف) ==========
+        const booksAlaaAlDin = [
+            { id: 6001, title: "صيد الخاطر", author: "ابن الجوزي", price: "25", category: "فقه" },
+            { id: 6002, title: "نزهة المجالس", author: "الصافوري الشافعي", price: "30", category: "فقه" },
+            { id: 6003, title: "روضة المحبين", author: "ابن القيم", price: "22", category: "فقه" },
+            { id: 6004, title: "شرح المنظومة الرحبية", author: "موفق الدين الرحبي", price: "20", category: "فقه" },
+            { id: 6005, title: "أخطاؤنا في العبادات", author: "د. مصطفى مراد", price: "15", category: "فقه" },
+            { id: 6006, title: "الحب في حياة الرسول", author: "حامد أحمد الطاهر", price: "18", category: "سيرة" },
+            { id: 6007, title: "أبحاث في مقاصد الشريعة", author: "نور الدين مختار", price: "22", category: "فقه" },
+            { id: 6008, title: "الأنوار المحمدية", author: "يوسف محمد البهائي", price: "25", category: "سيرة" },
+            { id: 6009, title: "رفع شأن الحبشان", author: "جلال الدين السيوطي", price: "20", category: "تراث" },
+            { id: 6010, title: "من روائع الخطط", author: "عبده الحمصي", price: "18", category: "تراث" },
+            { id: 6011, title: "التبيان في آداب حملة القرآن", author: "النووي", price: "15", category: "قرآن" },
+            { id: 6012, title: "تعليم الصلاة", author: "حامد أحمد الطاهر", price: "10", category: "فقه" },
+            { id: 6013, title: "حياة محمد للأطفال", author: "حامد أحمد الطاهر", price: "12", category: "سيرة" },
+            { id: 6014, title: "عالج نفسك بالقرآن", author: "أبو الفداء محمد عزة", price: "15", category: "رقية" },
+            { id: 6015, title: "مفهوم العقيدة عند الإمام مالك", author: "سالم فرج صالح", price: "18", category: "عقيدة" },
+            { id: 6016, title: "حكايات الرسول", author: "د. مصطفى مراد", price: "15", category: "سيرة" },
+            { id: 6017, title: "200 سؤال في العقيدة", author: "الشيخ حافظ بن أحمد", price: "15", category: "عقيدة" },
+            { id: 6018, title: "غاية المريد في التجويد", author: "عطية قابل نصر", price: "12", category: "قرآن" },
+            { id: 6019, title: "الأدوية الإسلامية الجامعة", author: "د. أحمد عبده عوض", price: "20", category: "طب" },
+            { id: 6020, title: "سنن أبي داود", author: "الإمام سليمان بن الأشعث", price: "40", category: "حديث" },
+            { id: 6021, title: "قضايا الفقه والفكر", author: "وهبة الزحيلي", price: "25", category: "فقه" },
+            { id: 6022, title: "صحيح مسلم", author: "الحافظ حسين بن مسلم", price: "45", category: "حديث" },
+            { id: 6023, title: "كتاب الديات", author: "ابن أبي عاصم", price: "18", category: "فقه" },
+            { id: 6024, title: "بلوغ المرام", author: "ابن حجر العسقلاني", price: "30", category: "حديث" },
+            { id: 6025, title: "مناسك الحج على مذهب مالك", author: "خليل بن إسحاق", price: "15", category: "فقه" },
+            { id: 6026, title: "تأويل مختلف الحديث", author: "ابن قتيبة", price: "20", category: "حديث" },
+            { id: 6027, title: "نمط صعب ونمط مخيف", author: "محمود حمد شاكر", price: "15", category: "فكر" },
+            { id: 6028, title: "الإمام علي بن أبي طالب", author: "محمد رضا", price: "20", category: "سيرة" },
+            { id: 6029, title: "ذو النورين عثمان بن عفان", author: "محمد رضا", price: "20", category: "سيرة" },
+            { id: 6030, title: "بغضة المستفيد", author: "محمد العربي التيجاني", price: "18", category: "فكر" },
+            { id: 6031, title: "ديوان الإمام حسين", author: "عبد الرحيم مارديني", price: "20", category: "شعر" },
+            { id: 6032, title: "تسهيل البلاغة", author: "أبي عبد الله فيصل", price: "18", category: "بلاغة" },
+            { id: 6033, title: "الفتح الرباني", author: "عبد القادر الجيلاني", price: "25", category: "تصوف" },
+            { id: 6034, title: "تراجم سيدات بيت النبوة", author: "د. عائشة عبد الرحمن", price: "22", category: "سيرة" },
+            { id: 6035, title: "الحكم الشرعي", author: "د. محمد عبد العاطي", price: "18", category: "فقه" },
+            { id: 6036, title: "مختصر العلامة خليل", author: "الشيخ خليل المالكي", price: "25", category: "فقه" },
+            { id: 6037, title: "طرائق تدريس القرآن", author: "أبو عبد الرحمن جمال", price: "18", category: "تربية" },
+            { id: 6038, title: "حادي الأرواح", author: "ابن القيم", price: "22", category: "فقه" },
+            { id: 6039, title: "فصوص الفصول", author: "ابن سناء الملك", price: "20", category: "بلاغة" },
+            { id: 6040, title: "الاختلاف الفقهي", author: "د. الصديق بشير", price: "18", category: "فقه" },
+            { id: 6041, title: "الاعتصام", author: "الشاطبي", price: "25", category: "فقه" },
+            { id: 6042, title: "المتجر الرابح", author: "الحافظ شرف الدين", price: "20", category: "حديث" },
+            { id: 6043, title: "الشفا بتعريف حقوق المصطفى", author: "القاضي عياض", price: "30", category: "سيرة" },
+            { id: 6044, title: "دلائل الإعجاز", author: "عبد القاهر الجرجاني", price: "22", category: "بلاغة" },
+            { id: 6045, title: "الموطأ", author: "الإمام مالك بن أنس", price: "35", category: "حديث" },
+            { id: 6046, title: "المحكمة الإلهية", author: "د. مصطفى مراد", price: "18", category: "عقيدة" },
+            { id: 6047, title: "الإعجاز العلمي في السنة", author: "د. زغلول النجار", price: "22", category: "اعجاز" },
+            { id: 6048, title: "لطائف المعارف", author: "الحنبلي", price: "18", category: "فقه" },
+            { id: 6049, title: "التبصيرة", author: "ابن الجوزي", price: "18", category: "وعظ" },
+            { id: 6050, title: "الخلفاء الراشدون", author: "د. مصطفى مراد", price: "15", category: "تاريخ" },
+            { id: 6051, title: "المنار المنيف", author: "ابن القيم", price: "15", category: "حديث" },
+            { id: 6052, title: "تنوير الحوالك ج1-2", author: "جلال الدين السيوطي", price: "40", category: "فقه" },
+            { id: 6053, title: "كتاب البر والصلة", author: "أبو الفرج البغدادي", price: "20", category: "فقه" },
+            { id: 6054, title: "الفكر المقاصدي", author: "د. محمد نصيف", price: "22", category: "فقه" },
+            { id: 6055, title: "الموسوعة الذهبية في الإعجاز", author: "د. أحمد متولي", price: "35", category: "اعجاز" },
+            { id: 6056, title: "موسوعة الإعجاز العلمي", author: "عبد الرحيم مارديني", price: "40", category: "اعجاز" },
+            { id: 6057, title: "المحبة والبغضاء", author: "محمود أحمد الأطرش", price: "15", category: "فقه" },
+            { id: 6058, title: "مختصر معارج القبول", author: "الشيخ حافظ أحمد", price: "18", category: "عقيدة" },
+            { id: 6059, title: "كتاب الدعاء", author: "الطبراني", price: "20", category: "حديث" },
+            { id: 6060, title: "الوافي في الفقه المالكي", author: "د. أحمد أبو ساق", price: "30", category: "فقه" },
+            { id: 6061, title: "كتاب التوحيد", author: "أبي بكر محمد", price: "18", category: "عقيدة" },
+            { id: 6062, title: "الإتقان في علوم القرآن ج1-2", author: "السيوطي", price: "45", category: "قرآن" },
+            { id: 6063, title: "العجلة والأناة", author: "عماد علي عبد السميع", price: "15", category: "سيرة" },
+            { id: 6064, title: "تقريب البعيد إلى جوهرة التوحيد", author: "علي بن محمد الصفاقسي", price: "18", category: "عقيدة" },
+            { id: 6065, title: "بطولات النبي", author: "عبد المنعم الهاشمي", price: "15", category: "سيرة" },
+            { id: 6066, title: "موسوعة الإعجاز العلمي في الحديث", author: "عبد الرحيم مارديني", price: "40", category: "اعجاز" },
+            { id: 6067, title: "المذهب الشافعي", author: "الخضر سالم بن حليس", price: "20", category: "فقه" },
+            { id: 6068, title: "علم الفرائض", author: "د. هشام الزهيري", price: "18", category: "فقه" },
+            { id: 6069, title: "منهج الأئمة في التعامل مع المخالف", author: "سراج الدين اليماني", price: "18", category: "فقه" },
+            { id: 6070, title: "فضائل الصحابة", author: "الشيخ أحمد بن محمود", price: "18", category: "سيرة" },
+            { id: 6071, title: "الإرشاد إلى علم الإعراب", author: "محمد بن أحمد القرشي", price: "15", category: "نحو" },
+            { id: 6072, title: "أسرار البلاغة", author: "عبد القاهر الجرجاني", price: "20", category: "بلاغة" },
+            { id: 6073, title: "الفتوحات الإسلامية", author: "د. مصطفى مراد", price: "18", category: "تاريخ" },
+            { id: 6074, title: "صحيح الدار الآخرة", author: "د. مصطفى مراد", price: "15", category: "عقيدة" },
+            { id: 6075, title: "الزهد", author: "الإمام أحمد بن حنبل", price: "15", category: "فقه" },
+            { id: 6076, title: "صحيح أحداث النهاية", author: "أبو عمر محمد الزغبي", price: "18", category: "عقيدة" },
+            { id: 6077, title: "حكم ومواعظ علي بن أبي طالب", author: "الشيخ أحمد جاد", price: "15", category: "حكم" },
+            { id: 6078, title: "البيان عند الأصوليين", author: "محمد عبد العاطي", price: "18", category: "اصول" },
+            { id: 6079, title: "حديث الإفك", author: "عامر حسين السلامي", price: "15", category: "سيرة" },
+            { id: 6080, title: "تفسير القرآن العظيم لابن كثير ج1-4", author: "ابن كثير", price: "80", category: "تفسير" },
+            { id: 6081, title: "أصول الإيمان والإسلام", author: "وهبة الزحيلي", price: "20", category: "عقيدة" },
+            { id: 6082, title: "الترغيب والترهيب ج1-4", author: "المنذري", price: "60", category: "حديث" },
+            { id: 6083, title: "من وصايا الرسول", author: "طه عبد الله العفيفي", price: "12", category: "سيرة" },
+            { id: 6084, title: "مختصر ابن كثير ج1-3", author: "ابن كثير", price: "45", category: "تفسير" },
+            { id: 6085, title: "موسوعة الفقه الميسر ج1-3", author: "حامد أحمد الطاهر", price: "50", category: "فقه" },
+            { id: 6086, title: "منارة الهدى (الوقف والابتداء)", author: "أحمد الأشموني", price: "30", category: "قرآن" },
+            { id: 6087, title: "بدائع الفوائد ج1-2", author: "ابن القيم", price: "35", category: "فقه" },
+            { id: 6088, title: "هداية القارئ ج1-4", author: "عبد الفتاح المرصفي", price: "50", category: "قرآن" },
+            { id: 6089, title: "حياة الصحابة ج1-3", author: "محمد يوسف الكاندهلوي", price: "45", category: "سيرة" },
+            { id: 6090, title: "المعونة على مذهب المدينة ج1-2", author: "القاضي عبد الوهاب", price: "35", category: "فقه" },
+            { id: 6091, title: "بلغة السالك لأقرب المسالك ج1-4", author: "الشيخ أحمد الصاوي", price: "60", category: "فقه" },
+            { id: 6092, title: "بيان المختصر ج1-3", author: "شمس الدين الأصفهاني", price: "45", category: "اصول" },
+            { id: 6093, title: "شرح اللمع لابن جني ج1-4", author: "عمر الثمانيني", price: "50", category: "نحو" },
+            { id: 6094, title: "أسماء الله الحسنى ج1-2", author: "وحيد عبد السلام بالي", price: "30", category: "عقيدة" },
+            { id: 6095, title: "كتاب الحاصل من المحصول ج1-2", author: "تاج الدين الأرموي", price: "35", category: "اصول" },
+            { id: 6096, title: "تفسير آيات الأحكام ج1-4", author: "الشيخ محمد علي السايس", price: "60", category: "تفسير" },
+            { id: 6097, title: "إتحاف فضلاء البشر ج1-2", author: "أحمد الضمياطي", price: "30", category: "قرآن" },
+            { id: 6098, title: "الفقه على المذاهب الأربعة ج1-4", author: "عبد الرحمن الجزيري", price: "60", category: "فقه" },
+            { id: 6099, title: "المجموعة الكاملة للإمام علي", author: "عبد الفتاح المقصود", price: "150", category: "موسوعة" },
+            { id: 6100, title: "الاختيار لتعليل المختار ج1-2", author: "عبد الله بن محمود", price: "35", category: "فقه" },
+            { id: 6101, title: "لسان المنبر ج1-2", author: "محمد المدنيني", price: "30", category: "وعظ" },
+            { id: 6102, title: "التبيان في إعراب القرآن ج1-2", author: "عبد الله العكبري", price: "35", category: "نحو" },
+            { id: 6103, title: "مغني المحتاج ج1-6", author: "شمس الدين الشربيني", price: "90", category: "فقه" },
+            { id: 6104, title: "فقه السنة ج1-3", author: "السيد سابق", price: "45", category: "فقه" },
+            { id: 6105, title: "لباب المحصول في علم الأصول ج1-2", author: "حسين بن رشيق", price: "35", category: "اصول" },
+            { id: 6106, title: "الاقتضاب في غريب الموطأ ج1-2", author: "أبو عبد الله التلمساني", price: "30", category: "لغة" },
+            { id: 6107, title: "صفوة التفاسير ج1-3", author: "محمد علي الصابوني", price: "45", category: "تفسير" },
+            { id: 6108, title: "اللباب في شرح الكتاب ج1-2", author: "عبد الغني الدمشقي", price: "35", category: "فقه" },
+            { id: 6109, title: "جامع البيان في القراءات السبع ج1-3", author: "أبو عمر الداني", price: "50", category: "قرآن" },
+            { id: 6110, title: "التفسير والمفسرون ج1-3", author: "د. مصطفى الذهبي", price: "45", category: "تفسير" },
+            { id: 6111, title: "المهيأ في كشف أسرار الموطأ ج1-4", author: "عثمان الكماطي", price: "60", category: "فقه" },
+            { id: 6112, title: "البيان والتبيين ج1-4", author: "الجاحظ", price: "50", category: "ادب" },
+            { id: 6113, title: "شرح حدود ابن عرفة ج1-2", author: "عبد الله الرصاع", price: "35", category: "اصول" },
+            { id: 6114, title: "تدريب الراوي", author: "جلال الدين السيوطي", price: "25", category: "حديث" },
+            { id: 6115, title: "البرهان في علوم القرآن", author: "بدر الدين الزركشي", price: "30", category: "قرآن" },
+            { id: 6116, title: "أخلاق النبي وآدابه", author: "أبو محمد بن جعفر", price: "18", category: "سيرة" },
+            { id: 6117, title: "أنت أيضاً صحابية", author: "أدهم شرقاوي", price: "15", category: "تنمية" },
+            { id: 6118, title: "كوني صحابية", author: "حنان لاشين", price: "15", category: "تنمية" },
+            { id: 6119, title: "لأنك الله ج1", author: "عبد الله بن جابر", price: "18", category: "تنمية" },
+            { id: 6120, title: "رسائل من القرآن", author: "أدهم شرقاوي", price: "15", category: "تنمية" },
+            { id: 6121, title: "قبل أن تبرد القهوة", author: "توشيكازو كواغوشي", price: "12", category: "روايات" },
+            { id: 6122, title: "وادي الذئاب", author: "توكيدارد الد", price: "15", category: "روايات" },
+            { id: 6123, title: "العادات الذرية", author: "جيمس كلير", price: "18", category: "تنمية" },
+            { id: 6124, title: "أرسس 2", author: "أحمد آل حمدان", price: "15", category: "روايات" },
+            { id: 6125, title: "قواعد جارتين", author: "عمرو عبد الحميد", price: "12", category: "روايات" },
+            { id: 6126, title: "دقات الشامو", author: "عمرو عبد الحميد", price: "12", category: "روايات" },
+            { id: 6127, title: "إن الله معنا", author: "فهد البشارة", price: "10", category: "تنمية" },
+            { id: 6128, title: "رسائل من النبي", author: "أدهم شرقاوي", price: "15", category: "سيرة" },
+            { id: 6129, title: "جلسات نفسية", author: "محمد إبراهيم", price: "15", category: "نفس" },
+            { id: 6130, title: "قوة السطو", author: "روبرت جرين", price: "20", category: "تنمية" },
+            { id: 6131, title: "إنني أتعفن رعباً", author: "مريم الحيسى", price: "12", category: "روايات" },
+            { id: 6132, title: "رونالدو", author: "لوكا كايولي", price: "12", category: "سيرة" },
+            { id: 6133, title: "الوحش الذي يسكنك", author: "محمد عبيد", price: "12", category: "نفس" },
+            { id: 6134, title: "كيف تتخلص من عقدك النفسية", author: "يوسف الحسني", price: "12", category: "نفس" },
+            { id: 6135, title: "الهشاشة النفسية", author: "د. إسماعيل عرفة", price: "12", category: "نفس" },
+            { id: 6136, title: "متعة عدم الكمال", author: "ديمون زهار", price: "10", category: "تنمية" },
+            { id: 6137, title: "وبالحق أنزلناه", author: "أدهم شرقاوي", price: "12", category: "تنمية" },
+            { id: 6138, title: "في قلبي أنثى عبرية", author: "خولة حمدي", price: "12", category: "روايات" },
+            { id: 6139, title: "على خطى الرسول", author: "أدهم شرقاوي", price: "10", category: "سيرة" },
+            { id: 6140, title: "بالنيابة عنهم", author: "علي نجم", price: "12", category: "روايات" },
+            { id: 6141, title: "متعة أن تكون في العشرين", author: "علا ديوب", price: "10", category: "تنمية" },
+            { id: 6142, title: "قوة التفكير الإيجابي", author: "نورمان فنسنت بيل", price: "12", category: "تنمية" },
+            { id: 6143, title: "قوة العادات", author: "تشارلز دويج", price: "15", category: "تنمية" },
+            { id: 6144, title: "الجريمة والعقاب ج1-2", author: "دوستويفسكي", price: "20", category: "روايات" },
+            { id: 6145, title: "ثاني اثنين", author: "أدهم شرقاوي", price: "10", category: "سيرة" },
+            { id: 6146, title: "ظننته رجلاً", author: "فاتن حمود", price: "12", category: "روايات" },
+            { id: 6147, title: "أين المفر", author: "خولة حمدي", price: "12", category: "روايات" },
+            { id: 6148, title: "ميسي", author: "لوكا كايولي", price: "12", category: "سيرة" },
+            { id: 6149, title: "السلام عليك يا صاحبي", author: "أدهم شرقاوي", price: "10", category: "تنمية" },
+            { id: 6150, title: "أنت ملك", author: "د. إبراهيم الفقي", price: "15", category: "تنمية" }
+        ];
+
+        // ========== دار الحكمة (264 كتاباً من الفاتورة) ==========
+        const booksDarAlHikma = [
+            { id: 401, title: "شرح قانون الإجراءات الجنائية الليبي ج1", author: "دار الحكمة", price: "35", category: "قانون" },
+            { id: 402, title: "شرح قانون الإجراءات الجنائية الليبي ج2", author: "دار الحكمة", price: "35", category: "قانون" },
+            { id: 403, title: "الاتجاهات الحديثة في القانون الدولي", author: "دار الحكمة", price: "30", category: "قانون" },
+            { id: 404, title: "الحماية الدستورية للحقوق والحريات العامة", author: "دار الحكمة", price: "45", category: "قانون" },
+            { id: 405, title: "مبادئ علم الجرام والعقاب", author: "دار الحكمة", price: "40", category: "قانون" },
+            { id: 406, title: "دراسات في القانون الدولي العام", author: "دار الحكمة", price: "30", category: "قانون" },
+            { id: 407, title: "الاسس القانونية لسلطة الادارة في الرقابة", author: "دار الحكمة", price: "25", category: "قانون" },
+            { id: 408, title: "الاحكام القانونية للسكوت في القرارات الادارية", author: "دار الحكمة", price: "30", category: "قانون" },
+            { id: 409, title: "المواريث والوصايا", author: "دار الحكمة", price: "30", category: "قانون" },
+            { id: 410, title: "اصول علم العقاب", author: "دار الحكمة", price: "35", category: "قانون" },
+            { id: 411, title: "اصول علم السياسة الجنائية", author: "دار الحكمة", price: "30", category: "قانون" },
+            { id: 412, title: "تطور مركز الفرد في القانون الدولي الانساني", author: "دار الحكمة", price: "40", category: "قانون" },
+            { id: 413, title: "الاحداث الجانحون", author: "دار الحكمة", price: "35", category: "قانون" },
+            { id: 414, title: "الحوار الوطني في تراث الثقافة السياسية", author: "دار الحكمة", price: "30", category: "سياسة" },
+            { id: 415, title: "السياسة الخارجية", author: "دار الحكمة", price: "25", category: "سياسة" },
+            { id: 416, title: "اصول القضاء الاداري", author: "دار الحكمة", price: "30", category: "قانون" },
+            { id: 417, title: "رقابة دوائر القضاء الاداري على اعمال الادارة", author: "دار الحكمة", price: "35", category: "قانون" },
+            { id: 418, title: "الوجيز الشامل في علم الصيغ", author: "دار الحكمة", price: "50", category: "قانون" },
+            { id: 419, title: "المبادئ الشرعية في احكام العقوبات في الفقه الاسلامي", author: "دار الحكمة", price: "30", category: "فقه" },
+            { id: 420, title: "اصول علم الاجرام", author: "دار الحكمة", price: "30", category: "قانون" },
+            { id: 421, title: "ORTHONTIC EXAMINATION", author: "دار الحكمة", price: "30", category: "طب" },
+            { id: 422, title: "PEDODONTIC2", author: "دار الحكمة", price: "30", category: "طب" },
+            { id: 423, title: "PEDODONTIC1", author: "دار الحكمة", price: "30", category: "طب" },
+            { id: 424, title: "النظرية العامة لتأميم ممتلكات الاجانب", author: "دار الحكمة", price: "25", category: "قانون" },
+            { id: 425, title: "الحقوق العينية الاصلية والتبعية 1-2", author: "دار الحكمة", price: "100", category: "قانون" },
+            { id: 426, title: "الاوراق التجارية في القانون الليبي", author: "دار الحكمة", price: "35", category: "قانون" },
+            { id: 427, title: "موسوعة الشركات التجارية", author: "دار الحكمة", price: "60", category: "قانون" },
+            { id: 428, title: "التحكيم في منازعات عقود الامتياز", author: "دار الحكمة", price: "25", category: "قانون" },
+            { id: 429, title: "قواعد البحث القانوني", author: "دار الحكمة", price: "25", category: "قانون" },
+            { id: 430, title: "مدخل الي القانون الدولي العام", author: "دار الحكمة", price: "30", category: "قانون" },
+            { id: 431, title: "المدخل لدراسة الفقه الاسلامي", author: "دار الحكمة", price: "40", category: "فقه" },
+            { id: 432, title: "مبدأ المسؤولية عن الحماية R2P", author: "دار الحكمة", price: "35", category: "قانون" },
+            { id: 433, title: "الحماية القانونية للطفل في التشريع الليبي", author: "دار الحكمة", price: "30", category: "قانون" },
+            { id: 434, title: "الرقابة على اعمال الادارة", author: "دار الحكمة", price: "45", category: "قانون" },
+            { id: 435, title: "الوجيز في قانون هيئة الشرطة", author: "دار الحكمة", price: "30", category: "قانون" },
+            { id: 436, title: "اصول التنظيم السياسي", author: "دار الحكمة", price: "35", category: "سياسة" },
+            { id: 437, title: "قانون المرافعات الليبي", author: "دار الحكمة", price: "55", category: "قانون" },
+            { id: 438, title: "الوجيز في علم الاثبات", author: "دار الحكمة", price: "50", category: "قانون" },
+            { id: 439, title: "السلطة التشريعية في نظام الحكم الاسلامي", author: "دار الحكمة", price: "25", category: "فقه" },
+            { id: 440, title: "الوجيز في الشركات التجارية", author: "دار الحكمة", price: "35", category: "قانون" },
+            { id: 441, title: "الوجيز في القانون البحري الليبي", author: "دار الحكمة", price: "40", category: "قانون" },
+            { id: 442, title: "اساسيات القانون التجاري الليبي", author: "دار الحكمة", price: "35", category: "قانون" },
+            { id: 443, title: "التعليم الإلكتروني واستراتيجيات التعليم والتعلم الحديثة", author: "دار الحكمة", price: "20", category: "حاسوب" },
+            { id: 444, title: "احكام الاسرة 1", author: "دار الحكمة", price: "40", category: "قانون" },
+            { id: 445, title: "احكام الاسرة 2", author: "دار الحكمة", price: "40", category: "قانون" },
+            { id: 446, title: "الفوائد الفرضية", author: "دار الحكمة", price: "35", category: "فقه" },
+            { id: 447, title: "تاريخ التشريع الاسلامي", author: "دار الحكمة", price: "35", category: "فقه" },
+            { id: 448, title: "الكيمياء العضوية 1", author: "دار الحكمة", price: "50", category: "كيمياء" },
+            { id: 449, title: "الكيمياء العضوية 2", author: "دار الحكمة", price: "50", category: "كيمياء" },
+            { id: 450, title: "مبادئ البكترياء و امراضها", author: "دار الحكمة", price: "25", category: "علوم" },
+            { id: 451, title: "الفيزياء العامة للعلوم الطبية", author: "دار الحكمة", price: "40", category: "فيزياء" },
+            { id: 452, title: "مبادئ الفيزياء الجامعية", author: "دار الحكمة", price: "25", category: "فيزياء" },
+            { id: 453, title: "الموتورات وتطبيقاتها", author: "دار الحكمة", price: "25", category: "هندسة" },
+            { id: 454, title: "مبادئ الرياضيات", author: "دار الحكمة", price: "35", category: "رياضيات" },
+            { id: 455, title: "الدليل المصور لافات الحجر الزراعي في ليبيا", author: "دار الحكمة", price: "55", category: "زراعة" },
+            { id: 456, title: "اساسيات الديناميكا الحرارية الكلاسيكية", author: "دار الحكمة", price: "45", category: "فيزياء" },
+            { id: 457, title: "الكيمياء العامة المبادئ والبنية ج1", author: "دار الحكمة", price: "40", category: "كيمياء" },
+            { id: 458, title: "مسائل محلولة وتمارين في الميكانيكا", author: "دار الحكمة", price: "30", category: "فيزياء" },
+            { id: 459, title: "الميكانيكا", author: "دار الحكمة", price: "40", category: "فيزياء" },
+            { id: 460, title: "اساسيات هندسة الموارد", author: "دار الحكمة", price: "25", category: "هندسة" },
+            { id: 461, title: "المفيد في رياضة 1", author: "دار الحكمة", price: "25", category: "رياضيات" },
+            { id: 462, title: "اساسيات الجبر (اسس الرياضيات ج1)", author: "دار الحكمة", price: "35", category: "رياضيات" },
+            { id: 463, title: "FUNDAMENTALS AND", author: "دار الحكمة", price: "40", category: "هندسة" },
+            { id: 464, title: "BASICS OF DS ELECTRIC CIRCUITS", author: "دار الحكمة", price: "30", category: "هندسة" },
+            { id: 465, title: "LECTURES ON COMMUNICATION", author: "دار الحكمة", price: "50", category: "هندسة" },
+            { id: 466, title: "اصول الكيمياء العضوية", author: "دار الحكمة", price: "50", category: "كيمياء" },
+            { id: 467, title: "الكيمياء العامة المبادئ والبنية 2", author: "دار الحكمة", price: "50", category: "كيمياء" },
+            { id: 468, title: "المصطلحات النووية", author: "دار الحكمة", price: "55", category: "علوم" },
+            { id: 469, title: "مبادئ علم الاقتصاد", author: "دار الحكمة", price: "35", category: "اقتصاد" },
+            { id: 470, title: "مبادئ تقنيات وعمليات التصنيع", author: "دار الحكمة", price: "30", category: "هندسة" },
+            { id: 471, title: "تطبيقات الحاسوب في التحليل الانشائي", author: "دار الحكمة", price: "30", category: "هندسة" },
+            { id: 472, title: "الاقتصاد الجزئي النظرية والتطبيق", author: "دار الحكمة", price: "45", category: "اقتصاد" },
+            { id: 473, title: "الكيمياء العملية التحليل النوعي", author: "دار الحكمة", price: "20", category: "كيمياء" },
+            { id: 474, title: "التحليل العددي", author: "دار الحكمة", price: "45", category: "رياضيات" },
+            { id: 475, title: "الميكانيكا الهندسية المجلد الثاني الاستاتيكا", author: "دار الحكمة", price: "75", category: "هندسة" },
+            { id: 476, title: "الميكانيكا الهندسية الاستاتيكا المجلد الاول", author: "دار الحكمة", price: "75", category: "هندسة" },
+            { id: 477, title: "الفيزياء الطبية", author: "دار الحكمة", price: "40", category: "فيزياء" },
+            { id: 478, title: "مسائل محلولة في الصوت والضوء", author: "دار الحكمة", price: "30", category: "فيزياء" },
+            { id: 479, title: "الكيمياء العضوية العملية", author: "دار الحكمة", price: "30", category: "كيمياء" },
+            { id: 480, title: "مسائل محلولة في الرياضيات", author: "دار الحكمة", price: "30", category: "رياضيات" },
+            { id: 481, title: "الرياضيات الاساسية", author: "دار الحكمة", price: "25", category: "رياضيات" },
+            { id: 482, title: "محاضرات في الرياضيات الجامعية للسنوات الاولى", author: "دار الحكمة", price: "40", category: "رياضيات" },
+            { id: 483, title: "مسائل محلولة في التكامل", author: "دار الحكمة", price: "35", category: "رياضيات" },
+            { id: 484, title: "الهندسة التحليلية المستوية", author: "دار الحكمة", price: "40", category: "رياضيات" },
+            { id: 485, title: "الهندسة المتجهية الفضائية", author: "دار الحكمة", price: "40", category: "رياضيات" },
+            { id: 486, title: "رياضة متقدمة للاقسام العلمية والهندسية", author: "دار الحكمة", price: "50", category: "رياضيات" },
+            { id: 487, title: "مبادئ الهندسة الوصفية", author: "دار الحكمة", price: "45", category: "هندسة" },
+            { id: 488, title: "الديناميكا الهندسية", author: "دار الحكمة", price: "30", category: "هندسة" },
+            { id: 489, title: "الكيمياء العضوية العملية الاساسية ج2", author: "دار الحكمة", price: "30", category: "كيمياء" },
+            { id: 490, title: "مقدمة في علم امراض الانسجة", author: "دار الحكمة", price: "35", category: "طب" },
+            { id: 491, title: "علم الفطريات الطبي", author: "دار الحكمة", price: "35", category: "طب" },
+            { id: 492, title: "التحليل المختبري للبول وسوائل الجسم", author: "دار الحكمة", price: "35", category: "طب" },
+            { id: 493, title: "مسائل محلولة في الفيزياء", author: "دار الحكمة", price: "35", category: "فيزياء" },
+            { id: 494, title: "مجالات وموجات الكهرومغناطيسية الهندسية", author: "دار الحكمة", price: "50", category: "فيزياء" },
+            { id: 495, title: "اساسيات هندسة الاتصالات", author: "دار الحكمة", price: "45", category: "هندسة" },
+            { id: 496, title: "دليل الطالب للفيزياء ج1", author: "دار الحكمة", price: "30", category: "فيزياء" },
+            { id: 497, title: "مسائل محلولة في اساسيات الكهرباء", author: "دار الحكمة", price: "35", category: "هندسة" },
+            { id: 498, title: "اساسيات الكهرباء", author: "دار الحكمة", price: "45", category: "هندسة" },
+            { id: 499, title: "الفيزياء المعملية", author: "دار الحكمة", price: "25", category: "فيزياء" },
+            { id: 500, title: "الفيزياء الاساسية", author: "دار الحكمة", price: "45", category: "فيزياء" }
+        ];
+
+        // إضافة باقي كتب دار الحكمة (حتى 264)
+        const hikmaRemaining = [
+            { id: 501, title: "مسائل محلولة في الفيزياء الطبية", author: "دار الحكمة", price: "35", category: "فيزياء" },
+            { id: 502, title: "مسائل وحلول في الفيزياء العامة", author: "دار الحكمة", price: "35", category: "فيزياء" },
+            { id: 503, title: "بايولوجية الخلية", author: "دار الحكمة", price: "30", category: "علوم" },
+            { id: 504, title: "LECTURES ON COMMUNICATION", author: "دار الحكمة", price: "50", category: "هندسة" },
+            { id: 505, title: "الصحراء الليبية", author: "دار الحكمة", price: "55", category: "جغرافيا" },
+            { id: 506, title: "مبادئ الكيمياء العامة (نظري – مسائل محلولة)", author: "دار الحكمة", price: "45", category: "كيمياء" },
+            { id: 507, title: "محاضرات في اللافقاريات الدنيا", author: "دار الحكمة", price: "55", category: "علوم" },
+            { id: 508, title: "اللافقاريات العليا", author: "دار الحكمة", price: "55", category: "علوم" },
+            { id: 509, title: "LECTURE NOTE IN ORGANIC", author: "دار الحكمة", price: "30", category: "كيمياء" },
+            { id: 510, title: "ORGANIC CHEMISTRY 2", author: "دار الحكمة", price: "30", category: "كيمياء" },
+            { id: 511, title: "ORGANIC CHEMISTRY", author: "دار الحكمة", price: "30", category: "كيمياء" },
+            { id: 512, title: "ORGANIC CHEMISTRY PROBLEMS", author: "دار الحكمة", price: "45", category: "كيمياء" },
+            { id: 513, title: "نظم هندسة الاتصالات الجزء الاول", author: "دار الحكمة", price: "50", category: "هندسة" },
+            { id: 514, title: "نظم هندسة الاتصالات ج2", author: "دار الحكمة", price: "50", category: "هندسة" },
+            { id: 515, title: "معادن الطين في التربة", author: "دار الحكمة", price: "30", category: "علوم" },
+            { id: 516, title: "BASIC PRINCIPLES OF", author: "دار الحكمة", price: "50", category: "علوم" },
+            { id: 517, title: "مناهج البحث العلمى لطلاب الدراسات العليا", author: "دار الحكمة", price: "35", category: "تربية" },
+            { id: 518, title: "البحث العلمي الماهية الفلسفة المنهجيات", author: "دار الحكمة", price: "30", category: "تربية" },
+            { id: 519, title: "البرمجة الشيئية باستخدام لغة C++", author: "دار الحكمة", price: "40", category: "حاسوب" },
+            { id: 520, title: "مهارات الدراسة والتواصل", author: "دار الحكمة", price: "30", category: "تنمية" },
+            { id: 521, title: "العنف العائلي ضد المرأة", author: "دار الحكمة", price: "30", category: "اجتماع" },
+            { id: 522, title: "تويتر", author: "دار الحكمة", price: "15", category: "حاسوب" },
+            { id: 523, title: "ميكروسوفت بوربوينت", author: "دار الحكمة", price: "15", category: "حاسوب" },
+            { id: 524, title: "فيجوال بيسك دون نت", author: "دار الحكمة", price: "15", category: "حاسوب" },
+            { id: 525, title: "وندوز 7", author: "دار الحكمة", price: "10", category: "حاسوب" },
+            { id: 526, title: "ميكروسوفت اكسيل", author: "دار الحكمة", price: "10", category: "حاسوب" },
+            { id: 527, title: "فايسبوك", author: "دار الحكمة", price: "10", category: "حاسوب" },
+            { id: 528, title: "وندوز 8", author: "دار الحكمة", price: "10", category: "حاسوب" },
+            { id: 529, title: "الانترنت", author: "دار الحكمة", price: "35", category: "حاسوب" },
+            { id: 530, title: "المدخل الي البرمجة بلغة", author: "دار الحكمة", price: "25", category: "حاسوب" },
+            { id: 531, title: "مقدمة في علم الحاسب الآلي", author: "دار الحكمة", price: "30", category: "حاسوب" },
+            { id: 532, title: "البرمجة الشيئية باستخدام C++", author: "دار الحكمة", price: "40", category: "حاسوب" },
+            { id: 533, title: "اساسيات وتطبيقات لغة سي", author: "دار الحكمة", price: "40", category: "حاسوب" },
+            { id: 534, title: "دليل المترجم في الميدان", author: "دار الحكمة", price: "35", category: "لغة" },
+            { id: 535, title: "دراسات في فلسفة التربية والمناهج", author: "دار الحكمة", price: "25", category: "تربية" },
+            { id: 536, title: "تاريخ الانسان حتي ظهور المدنيات", author: "دار الحكمة", price: "45", category: "تاريخ" },
+            { id: 537, title: "المدخل في البرمجة علي الحاسب الآلي", author: "دار الحكمة", price: "30", category: "حاسوب" },
+            { id: 538, title: "البرمجة باستخدام لغة بايثون", author: "دار الحكمة", price: "30", category: "حاسوب" },
+            { id: 539, title: "اساسيات الحاسوب والبرمجة", author: "دار الحكمة", price: "40", category: "حاسوب" },
+            { id: 540, title: "علم النفس الاجتماعي", author: "دار الحكمة", price: "25", category: "نفس" },
+            { id: 541, title: "الطرق العددية باستخدام فورتران", author: "دار الحكمة", price: "35", category: "رياضيات" },
+            { id: 542, title: "دراسات في التربية الاسلامية", author: "دار الحكمة", price: "30", category: "تربية" },
+            { id: 543, title: "معجم المصطلحات والمفاهيم في الجغرافيا البحرية", author: "دار الحكمة", price: "60", category: "جغرافيا" },
+            { id: 544, title: "مقالات في النظرية الاجتماعية", author: "دار الحكمة", price: "25", category: "اجتماع" },
+            { id: 545, title: "العنف الاسري وعلاقته بتعاطي المخدرات", author: "دار الحكمة", price: "25", category: "اجتماع" },
+            { id: 546, title: "العنف ضد النساء", author: "دار الحكمة", price: "35", category: "اجتماع" },
+            { id: 547, title: "اساسيات القانون (المدخل الى علم القانون) ج2", author: "دار الحكمة", price: "45", category: "قانون" },
+            { id: 548, title: "البحث العلمي", author: "دار الحكمة", price: "45", category: "تربية" },
+            { id: 549, title: "البحث الجيد دليل لمشاريع البحوث الاجتماعية", author: "دار الحكمة", price: "30", category: "تربية" },
+            { id: 550, title: "جرائم التعبير والصحافة", author: "دار الحكمة", price: "45", category: "قانون" },
+            { id: 551, title: "النظم القانونية والقضائية القديمة", author: "دار الحكمة", price: "40", category: "قانون" },
+            { id: 552, title: "القرار الاداري المعيب بين السحب والالغاء", author: "دار الحكمة", price: "40", category: "قانون" },
+            { id: 553, title: "التوجيه التربوي والارشاد النفسي", author: "دار الحكمة", price: "30", category: "نفس" },
+            { id: 554, title: "دليل الطالب", author: "دار الحكمة", price: "15", category: "تربية" },
+            { id: 555, title: "اسهامات الخدمة الاجتماعية", author: "دار الحكمة", price: "25", category: "اجتماع" },
+            { id: 556, title: "النظرية الاجتماعية واتجاهات اساسية", author: "دار الحكمة", price: "25", category: "اجتماع" },
+            { id: 557, title: "اساسيات القانون الوضعي ج1 (القانون)", author: "دار الحكمة", price: "45", category: "قانون" },
+            { id: 558, title: "تركيب جسم الانسان ووظائفه", author: "دار الحكمة", price: "35", category: "طب" },
+            { id: 559, title: "REMOVABLE PARTIAL", author: "دار الحكمة", price: "50", category: "طب" },
+            { id: 560, title: "POULTRY SCIENCE", author: "دار الحكمة", price: "80", category: "زراعة" },
+            { id: 561, title: "BEEF CATTLE", author: "دار الحكمة", price: "190", category: "زراعة" },
+            { id: 562, title: "OZONE IN FOOD PROCESSING", author: "دار الحكمة", price: "140", category: "علوم" },
+            { id: 563, title: "PRACTICAL POULTRY PRODUCTION", author: "دار الحكمة", price: "25", category: "زراعة" },
+            { id: 564, title: "الشركة والربح في الاسلام", author: "دار الحكمة", price: "20", category: "فقه" },
+            { id: 565, title: "PRINCIPLES OF FOOD PROCESSING", author: "دار الحكمة", price: "180", category: "علوم" },
+            { id: 566, title: "OUTLINE OF CLINICAL DIAGNOSIS", author: "دار الحكمة", price: "35", category: "طب" },
+            { id: 567, title: "VETERINARY PHARMACOLOGY", author: "دار الحكمة", price: "200", category: "طب" },
+            { id: 568, title: "تشريح الدواجن", author: "دار الحكمة", price: "50", category: "زراعة" },
+            { id: 569, title: "TRANSPORT PROPERTI OF FOOD", author: "دار الحكمة", price: "120", category: "علوم" },
+            { id: 570, title: "FEEDS AND FEEDING", author: "دار الحكمة", price: "60", category: "زراعة" },
+            { id: 571, title: "GENETICS", author: "دار الحكمة", price: "50", category: "علوم" },
+            { id: 572, title: "FOODBORNE PATHOGENS", author: "دار الحكمة", price: "240", category: "علوم" },
+            { id: 573, title: "HELMINTHS ARTHROPODS AND", author: "دار الحكمة", price: "60", category: "طب" },
+            { id: 574, title: "VETERINARY EPIDEMIOLOGY", author: "دار الحكمة", price: "80", category: "طب" },
+            { id: 575, title: "GENE-BRAIN-BEHAVIOUR", author: "دار الحكمة", price: "50", category: "علوم" },
+            { id: 576, title: "الطفيليات البيطرية", author: "دار الحكمة", price: "80", category: "طب" },
+            { id: 577, title: "معراج الصعود", author: "دار الحكمة", price: "30", category: "فقه" },
+            { id: 578, title: "ليبيا في كتابات الاقدمين", author: "دار الحكمة", price: "25", category: "تاريخ" },
+            { id: 579, title: "الازمات وادارتها في ليبيا الملكية", author: "دار الحكمة", price: "25", category: "تاريخ" },
+            { id: 580, title: "تاريخ الحضارة العربية الاسلامية", author: "دار الحكمة", price: "30", category: "تاريخ" },
+            { id: 581, title: "مراة الحضارات القديمة", author: "دار الحكمة", price: "25", category: "تاريخ" },
+            { id: 582, title: "الوضع السياسي والاقتصادي", author: "دار الحكمة", price: "35", category: "اقتصاد" },
+            { id: 583, title: "دراسات في جغرافية الصناعة والمعادن", author: "دار الحكمة", price: "40", category: "جغرافيا" },
+            { id: 584, title: "دراسات في جغرافية مصادر الطاقة", author: "دار الحكمة", price: "40", category: "جغرافيا" },
+            { id: 585, title: "صناعة النفط فى ليبيا", author: "دار الحكمة", price: "30", category: "اقتصاد" },
+            { id: 586, title: "الاندلس محاضرات في التاريخ والحضارة", author: "دار الحكمة", price: "35", category: "تاريخ" },
+            { id: 587, title: "موجز تاريخ اسيا الحديث والمعاصر", author: "دار الحكمة", price: "20", category: "تاريخ" },
+            { id: 588, title: "التاريخية في احاديث المدنية", author: "دار الحكمة", price: "20", category: "تاريخ" },
+            { id: 589, title: "ثورة العصور الوسطي التجارية", author: "دار الحكمة", price: "20", category: "تاريخ" },
+            { id: 590, title: "محاضرات في تاريخ اوربا", author: "دار الحكمة", price: "30", category: "تاريخ" },
+            { id: 591, title: "من تاريخ الزبيدات الثقافي", author: "دار الحكمة", price: "35", category: "تاريخ" },
+            { id: 592, title: "الوثائق", author: "دار الحكمة", price: "40", category: "تاريخ" },
+            { id: 593, title: "انتشار الاسلام والثقافة العربية", author: "دار الحكمة", price: "30", category: "تاريخ" },
+            { id: 594, title: "دور مصراته في حركة الجهاد الليبي", author: "دار الحكمة", price: "20", category: "تاريخ" },
+            { id: 595, title: "علم الاثار الافريقي", author: "دار الحكمة", price: "25", category: "تاريخ" },
+            { id: 596, title: "العرب من خلال تراثهم", author: "دار الحكمة", price: "35", category: "تاريخ" },
+            { id: 597, title: "مقدمة في تاريخ المغرب الاجتماعي", author: "دار الحكمة", price: "35", category: "تاريخ" },
+            { id: 598, title: "تاريخ العرب الاجتماعي", author: "دار الحكمة", price: "20", category: "تاريخ" },
+            { id: 599, title: "محاضرات في تاريخ اوربا الحديث", author: "دار الحكمة", price: "20", category: "تاريخ" },
+            { id: 600, title: "ملاك الارض بافريقية", author: "دار الحكمة", price: "25", category: "تاريخ" },
+            { id: 601, title: "طرابلس عاصمة الثقافة الاسلامية", author: "دار الحكمة", price: "30", category: "تاريخ" },
+            { id: 602, title: "مبادئ الفطريات وامراضها النباتية", author: "دار الحكمة", price: "45", category: "زراعة" },
+            { id: 603, title: "قريبا من المتنبي", author: "دار الحكمة", price: "30", category: "ادب" },
+            { id: 604, title: "الادارة التعليمية لكليات العلوم الانسانية", author: "دار الحكمة", price: "30", category: "تربية" },
+            { id: 605, title: "طرق التدريس الخاصة", author: "دار الحكمة", price: "30", category: "تربية" },
+            { id: 606, title: "العلاقات السياسية الدولية", author: "دار الحكمة", price: "30", category: "سياسة" },
+            { id: 607, title: "دراسات في الثقافة الاسلامية", author: "دار الحكمة", price: "30", category: "فقه" },
+            { id: 608, title: "التراث الثقافي الليبي", author: "دار الحكمة", price: "50", category: "تاريخ" },
+            { id: 609, title: "الجيولوجيا الفيزيائية والتاريخية العملي", author: "دار الحكمة", price: "45", category: "علوم" },
+            { id: 610, title: "المناهج وطرق التعليم", author: "دار الحكمة", price: "30", category: "تربية" },
+            { id: 611, title: "المنهج المدرسي الفعال", author: "دار الحكمة", price: "45", category: "تربية" },
+            { id: 612, title: "مهارات الاستماع والتحدث", author: "دار الحكمة", price: "50", category: "لغة" },
+            { id: 613, title: "التربية المقارنة", author: "دار الحكمة", price: "45", category: "تربية" },
+            { id: 614, title: "نافذة علي تعليم الصم", author: "دار الحكمة", price: "30", category: "تربية" },
+            { id: 615, title: "تدريس العلوم المعاصرة", author: "دار الحكمة", price: "30", category: "تربية" },
+            { id: 616, title: "الاتجاهات والميول العلمية في تدريس العلوم", author: "دار الحكمة", price: "30", category: "تربية" },
+            { id: 617, title: "تخطيط وانتاج المواد السمعبصرية", author: "دار الحكمة", price: "40", category: "تربية" },
+            { id: 618, title: "البحث العلمي التربوي", author: "دار الحكمة", price: "60", category: "تربية" },
+            { id: 619, title: "نظم وسياسات التعليم", author: "دار الحكمة", price: "75", category: "تربية" },
+            { id: 620, title: "قراءات في اساليب البحث العلمي", author: "دار الحكمة", price: "20", category: "تربية" },
+            { id: 621, title: "ليبيا ملتقى المغرب والمشرق", author: "دار الحكمة", price: "50", category: "تاريخ" },
+            { id: 622, title: "من اعلام الفكر التربوي", author: "دار الحكمة", price: "50", category: "تربية" },
+            { id: 623, title: "ليس بالعلم وحده", author: "دار الحكمة", price: "30", category: "تنمية" },
+            { id: 624, title: "مقدمة في فلسفة التربية", author: "دار الحكمة", price: "35", category: "تربية" },
+            { id: 625, title: "التربية الاستقصائية", author: "دار الحكمة", price: "35", category: "تربية" },
+            { id: 626, title: "الادارة التعليمية", author: "دار الحكمة", price: "35", category: "تربية" },
+            { id: 627, title: "تشوية العقل العربي", author: "دار الحكمة", price: "35", category: "فكر" },
+            { id: 628, title: "الدراسة بالعينة للعقل العملي", author: "دار الحكمة", price: "40", category: "تربية" },
+            { id: 629, title: "علوم التربية والنفس", author: "دار الحكمة", price: "35", category: "نفس" },
+            { id: 630, title: "الثورة التكنولوجية في التربية العربية", author: "دار الحكمة", price: "35", category: "تربية" },
+            { id: 631, title: "التعليم والتعليم الالكتروني", author: "دار الحكمة", price: "65", category: "حاسوب" },
+            { id: 632, title: "مصادر التعلم", author: "دار الحكمة", price: "80", category: "تربية" },
+            { id: 633, title: "التعليم العالمي في بلدان المغرب العربي", author: "دار الحكمة", price: "40", category: "تربية" },
+            { id: 634, title: "التواصل الثقافي بين ضفتي الكبري", author: "دار الحكمة", price: "40", category: "اجتماع" },
+            { id: 635, title: "التواصل الاجتماعي الديموغرافي", author: "دار الحكمة", price: "35", category: "اجتماع" },
+            { id: 636, title: "جماليات الرواية الليبية", author: "دار الحكمة", price: "35", category: "ادب" },
+            { id: 637, title: "دراسات في الموارد البشرية", author: "دار الحكمة", price: "30", category: "ادارة" },
+            { id: 638, title: "اليونسكو ومجمع المستقبل", author: "دار الحكمة", price: "30", category: "سياسة" },
+            { id: 639, title: "تاثير الادوية علي الجهاز العصبي", author: "دار الحكمة", price: "50", category: "طب" },
+            { id: 640, title: "اساسيات ممارسة الطب الشرعي", author: "دار الحكمة", price: "40", category: "طب" },
+            { id: 641, title: "فسيولوجيا جسم الانسان", author: "دار الحكمة", price: "65", category: "طب" },
+            { id: 642, title: "فحص البصر", author: "دار الحكمة", price: "65", category: "طب" },
+            { id: 643, title: "فحص وظائف البصر", author: "دار الحكمة", price: "25", category: "طب" },
+            { id: 644, title: "سيكولوجية التعلم والتعليم الصفي", author: "دار الحكمة", price: "35", category: "نفس" },
+            { id: 645, title: "تنمية الاستعداد اللغوي عند الاطفال", author: "دار الحكمة", price: "30", category: "تربية" },
+            { id: 646, title: "دراسات في مناهج وطرق التعليم في رياض الاطفال", author: "دار الحكمة", price: "65", category: "تربية" },
+            { id: 647, title: "تخطيط وانتاج المواد السمعبصرية", author: "دار الحكمة", price: "30", category: "تربية" },
+            { id: 648, title: "التكنولوجيا والتربية", author: "دار الحكمة", price: "30", category: "تربية" },
+            { id: 649, title: "مناهج البحث في اعلام الطفل", author: "دار الحكمة", price: "30", category: "اعلام" },
+            { id: 650, title: "التربية والتنمية الريفية", author: "دار الحكمة", price: "35", category: "تربية" },
+            { id: 651, title: "ادب الأطفال في المرحلة الابتدائية", author: "دار الحكمة", price: "30", category: "ادب" },
+            { id: 652, title: "الانضباط التعاوني", author: "دار الحكمة", price: "65", category: "تربية" },
+            { id: 653, title: "الانجاحات والميول العلمية في تدريس العلوم", author: "دار الحكمة", price: "30", category: "تربية" },
+            { id: 654, title: "مناهج واساليب التدريس في التربية الخاصة", author: "دار الحكمة", price: "70", category: "تربية" },
+            { id: 655, title: "نماذج التدريس الصفي", author: "دار الحكمة", price: "45", category: "تربية" },
+            { id: 656, title: "الاهداف والاختبارات في المناهج", author: "دار الحكمة", price: "30", category: "تربية" },
+            { id: 657, title: "البرمجية القيمية في خدمة الجماعة", author: "دار الحكمة", price: "40", category: "اجتماع" },
+            { id: 658, title: "التدريس المصغر", author: "دار الحكمة", price: "65", category: "تربية" },
+            { id: 659, title: "التربية البيئية", author: "دار الحكمة", price: "35", category: "بيئة" },
+            { id: 660, title: "تدريس العلوم المعاصرة", author: "دار الحكمة", price: "30", category: "تربية" },
+            { id: 661, title: "الادارة التعليمية", author: "دار الحكمة", price: "30", category: "تربية" },
+            { id: 662, title: "اساسيات القانون الوضعي البيئي", author: "دار الحكمة", price: "40", category: "قانون" },
+            { id: 663, title: "الاجراءات الجنائية في التشريع البيئي", author: "دار الحكمة", price: "45", category: "قانون" },
+            { id: 664, title: "الاجراءات الجنائية في التشريع البيئي ج1", author: "دار الحكمة", price: "45", category: "قانون" }
+        ];
+        
+        booksDarAlHikma.push(...hikmaRemaining);
+
+        // ========== دار الثقافة (69 كتاباً) ==========
+        const booksDarAlThaqafa = [
+            { id: 301, title: "ضمان الحقوق بالاموال المنقولة", author: "د.عدنان عبد الجليل الدقاق", price: "365.5", category: "قانون" },
+            { id: 302, title: "الوجيز في اصول التنفيذ", author: "د.عبدالله يحيى مكناس", price: "365.5", category: "قانون" },
+            { id: 303, title: "فلسفة القانون", author: "أ.د منذر الشاوي", price: "365.5", category: "قانون" },
+            { id: 304, title: "أصول التنفيذ وفقاً لقانون الإجراء", author: "أ.د مفلح عواد القضاة", price: "289", category: "قانون" },
+            { id: 305, title: "نظرية التعسف في استعمال الحق في الملكية العقارية", author: "د.ايهاب علي الزعبي", price: "255", category: "قانون" },
+            { id: 306, title: "سقوط المسؤولية المدنية", author: "د.سهير محمد القضاة", price: "365.5", category: "قانون" },
+            { id: 307, title: "المسؤولية التقصيرية", author: "أ.د محمد صبري الجندي", price: "544", category: "قانون" },
+            { id: 308, title: "التنفيذ وإجراءاته في المواد المدنية والتجارية", author: "د.حسين أحمد المشاقي", price: "365.5", category: "قانون" },
+            { id: 309, title: "النظام القانون لأموال الدولة الخاصة", author: "أ.أحمد طلال عبد الحميد", price: "289", category: "قانون" },
+            { id: 310, title: "ادارة الدعوى المدنية", author: "د.محمد نصر الرواشدة", price: "365.5", category: "قانون" },
+            { id: 311, title: "مسؤولية المحامي المدنية عن أخطائه المهنية", author: "د.عبد الباقي سوادي", price: "289", category: "قانون" },
+            { id: 312, title: "تسبيب الأحكام وفقاً لقانون أصول المحاكمات المدنية", author: "د.يوسف محمد المصاروة", price: "289", category: "قانون" },
+            { id: 313, title: "نظرية الذمة المالية", author: "د.منصور حاتم الفتلاوي", price: "221", category: "قانون" },
+            { id: 314, title: "النظرية العامة للتأمين في المسؤولية المدنية", author: "د.موسى جميل النعيمات", price: "433.5", category: "قانون" },
+            { id: 315, title: "غطاء الحماية والتعويض في نظام التأمين", author: "المحامي.بهاء بهيج شكري", price: "433.5", category: "قانون" },
+            { id: 316, title: "التأمين في التطبيق والقانون القضاء 1-2 جزئين", author: "المحامي.بهاء بهيج شكري", price: "578", category: "قانون" },
+            { id: 317, title: "الشخصية القانونية للذكاء الاصطناعي", author: "د.بخيت محمد الدعجة", price: "289", category: "قانون" },
+            { id: 318, title: "المسؤولية المدنية للحق في الصورة", author: "د.مصطفى خالد الرواشدة", price: "255", category: "قانون" },
+            { id: 319, title: "الحماية الجزائية لحرمة الحياة الخاصة", author: "د.اشرف فتحي الراعي", price: "289", category: "قانون" },
+            { id: 320, title: "المسؤولية الجزائية لاطباء الاسنان في مجال التجميل", author: "د.هبة سامي الخوالدة", price: "365.5", category: "قانون" },
+            { id: 321, title: "المسؤولية المدنية للاطباء عن اخطائهم", author: "د.بن صغير مراد", price: "289", category: "قانون" },
+            { id: 322, title: "الخطأ في المسؤولية الطبية المدنية", author: "د.اسعد عبيد الجميلي", price: "510", category: "قانون" },
+            { id: 323, title: "بدائل العقوبات السالبة للحرية", author: "القاضي د.احمد علي الخوالدة", price: "289", category: "قانون" },
+            { id: 324, title: "حجية الحكم الجزائي أمام القضاء المدني", author: "أ.أحمد يوسف الزواهرة", price: "255", category: "قانون" },
+            { id: 325, title: "النظرية العامة لقانون التجارة الدولية", author: "أ.د نداء المولى", price: "289", category: "قانون" },
+            { id: 326, title: "المدخل الى قانون الجمارك", author: "العقيد د. عدي محمود العرود", price: "289", category: "قانون" },
+            { id: 327, title: "خطاب الضمان المصرفي", author: "أ.د فائق محمود الشماع", price: "365.5", category: "قانون" },
+            { id: 328, title: "الاعتماد المصرفي النقدي", author: "أ.د فائق محمود الشماع", price: "510", category: "قانون" },
+            { id: 329, title: "الاعتمادات المستندية في ظل نشرة الأعراف الدولية الموحدة", author: "د.سيف الدين سامي العتوم", price: "289", category: "قانون" },
+            { id: 330, title: "الحجز في الاعتماد المستندي", author: "د.ربى محمد حميدان", price: "289", category: "قانون" },
+            { id: 331, title: "الاحكام العامة في القانون الضريبي", author: "أ.د عادل فليح العلي", price: "510", category: "قانون" },
+            { id: 332, title: "الاعتماد المستندي", author: "ا.د فائق الشماع", price: "433.5", category: "قانون" },
+            { id: 333, title: "الطعن بقرار ضريبة الدخل", author: "د.وليد عبد الكريم العطية", price: "510", category: "قانون" },
+            { id: 334, title: "الاسرار التجارية المفهوم والطبيعة القانونية", author: "د.ابراهيم محمد عبيدات", price: "365.5", category: "قانون" },
+            { id: 335, title: "الإيداع المصرفي ج2 الإيداع غير النقدي", author: "أ.د فائق محمود الشماع", price: "289", category: "قانون" },
+            { id: 336, title: "التحكيم في منازعات العقود الإدارية الدولية", author: "د.رولا نائل سلامة", price: "289", category: "قانون" },
+            { id: 337, title: "بطلان حكم التحكيم ومدى رقابة محكمة النقض عليه", author: "المحامي د.أحمد بشير شرايري", price: "433.5", category: "قانون" },
+            { id: 338, title: "القضاء الاداري المقارن الاردن-مصر-فرنسا", author: "أ.د بسام ابو ارميله", price: "510", category: "قانون" },
+            { id: 339, title: "موسوعة القضاء الاداري", author: "القاضي جهاد صالح العتيبي", price: "510", category: "قانون" },
+            { id: 340, title: "ترقية الموظف العام", author: "د.وليد سعود القاضي", price: "365.5", category: "قانون" },
+            { id: 341, title: "القرائن القضائية لإثبات عدم مشروعية القرار", author: "د.مصطفى عبد العزيز الطراونة", price: "221", category: "قانون" },
+            { id: 342, title: "الوجيز في حقوق الإنسان وحرياته الأساسية", author: "أ.د غازي حسن صباريني", price: "289", category: "قانون" },
+            { id: 343, title: "الحريات العامة", author: "د.زياد محمد ربيع", price: "365.5", category: "قانون" },
+            { id: 344, title: "الكرامة الإنسانية", author: "د.محمد خليل الموسى", price: "187", category: "قانون" },
+            { id: 345, title: "موسوعة تاريخ القانون الدولي", author: "د.محمد خليل الموسى", price: "289", category: "قانون" },
+            { id: 346, title: "المفاوضات الدولية والسيادة الوطنية", author: "د.محمد الحاج حمود", price: "544", category: "قانون" },
+            { id: 347, title: "الدبلوماسية المعاصرة", author: "أ.د غازي حسن صباريني", price: "365.5", category: "قانون" },
+            { id: 348, title: "القانون الدولي لحقوق الإنسان 1-2 جزئين", author: "أ.د محمد علوان-د.محمد الموسوي", price: "654.5", category: "قانون" },
+            { id: 349, title: "المنازعات الناجمة عن خلافة الدول", author: "أ.صفاء سمير ابراهيم", price: "365.5", category: "قانون" },
+            { id: 350, title: "آليات الحماية الدولية لحقوق الإنسان", author: "د.بدر الدين محمد شبل", price: "365.5", category: "قانون" },
+            { id: 351, title: "الوسيط في القانون الدولي العام ج3 (حقوق الإنسان)", author: "د.عبد الكريم علوان", price: "289", category: "قانون" },
+            { id: 352, title: "رقابة الامتناع على دستورية القوانين", author: "د.محمد عبد الله الشوابكة", price: "433.5", category: "قانون" },
+            { id: 353, title: "الدفع بعدم الدستورية", author: "د.ميساء جمال حياصات", price: "510", category: "قانون" },
+            { id: 354, title: "النظرية العامة للقضاء الدستوري", author: "أ.د كامل السعيد", price: "578", category: "قانون" },
+            { id: 355, title: "القضاء الدستوري بين النظرية والتطبيق", author: "أ.المحامي فهد عبد الكريم أبو العثم", price: "510", category: "قانون" },
+            { id: 356, title: "اصابات العمل والتعويض عنها", author: "القاضي رامي نهيد صلاح", price: "255", category: "قانون" },
+            { id: 357, title: "رعاية المسنين بين النظرية والتطبيق", author: "د.وفاء صالح الصفتي - د.هند محمد مظلوم", price: "289", category: "قانون" },
+            { id: 358, title: "حق الرد والتصحيح في التشريعات الاعلامية", author: "د.الطيب بلواضح", price: "365.5", category: "قانون" },
+            { id: 359, title: "القانون الدولي- مدخل لدراسة البنية والتكوين", author: "محمد خليل الموسى", price: "433.5", category: "قانون" },
+            { id: 360, title: "موسوعة القضاء المدني - اصول المحاكمات", author: "محمود الكيلاني", price: "365", category: "قانون" },
+            { id: 361, title: "موسوعة القضاء المدني - الوساطة والتحكيم", author: "محمود الكيلاني", price: "433.5", category: "قانون" },
+            { id: 362, title: "الموجز في القانون الدولي العام", author: "أ.د سهيل حسين الفتلاوي", price: "365.5", category: "قانون" },
+            { id: 363, title: "الصورية في التعاقد", author: "فواز يوسف الجبوري", price: "289", category: "قانون" },
+            { id: 364, title: "موضوعات خاصة بالقانون المدني", author: "زيد محمود العقايلة", price: "365.5", category: "قانون" },
+            { id: 365, title: "حق الملكية في ذاته في القانون المدني", author: "محمد وحيد الدين سوار", price: "289", category: "قانون" },
+            { id: 366, title: "القضاء علم وفن وفهم", author: "تغريد حكمت", price: "289", category: "قانون" },
+            { id: 367, title: "الصياغة القانونية تشريعا وفقها وقضاء ومحاماة", author: "عبد القادر الشيخلي", price: "289", category: "قانون" },
+            { id: 368, title: "مبادئ علم القانون - نظرية القانون - نظرية الحق", author: "مهند وليد الحداد", price: "255", category: "قانون" },
+            { id: 369, title: "الدليل المتكامل في المهارات القانونية المهنية", author: "شادي عدنان شديفات", price: "365.5", category: "قانون" }
+        ];
+
+        // ========== دار المسيرة (200 كتاب أساسي) ==========
+        const booksDarAlMasira = [
+            { id: 101, title: "ريادة الاعمال", author: "بلال هاشم النسور وزميله", price: "240", category: "ادارة" },
+            { id: 102, title: "الموارد البشرية مدخل تحقيق الميزة التنافسية", author: "مصطفى محمود ابو بكر", price: "300", category: "ادارة" },
+            { id: 103, title: "النظرية الادارية الاسلامية", author: "محمد محمود العجلوني", price: "155", category: "ادارة" },
+            { id: 104, title: "تمويل المشروعات الصغيرة والمتوسطة", author: "حسين محمد سمحان وزميله", price: "210", category: "مالية" },
+            { id: 105, title: "ريادة الاعمال الاجتماعية", author: "هيثم خلف الحنيطي", price: "180", category: "ادارة" },
+            { id: 106, title: "المهارات الادارية في تطوير الذات", author: "بلال خلف السكارنة", price: "240", category: "ادارة" },
+            { id: 107, title: "تطبيقات في ادارة الجودة الشاملة", author: "عبدالستار محمد العلي", price: "240", category: "ادارة" },
+            { id: 108, title: "فن البحث عن عمل", author: "محمد شحادة ابويمن", price: "110", category: "تطوير" },
+            { id: 109, title: "ادارة الاعمال الدولية", author: "علي عباس", price: "245", category: "ادارة" },
+            { id: 110, title: "حوكمة التفكير", author: "يعقوب عادل ناصر الدين", price: "240", category: "فكر" },
+            { id: 111, title: "علم الاحياء للهواة", author: "خير سليمان شواهين", price: "210", category: "علوم" },
+            { id: 112, title: "علم الحشرات العام", author: "ياسر عفيفي السيد", price: "155", category: "علوم" },
+            { id: 113, title: "علم الخلية", author: "أ.د مكرم ضياء شكارة", price: "210", category: "علوم" },
+            { id: 114, title: "علم الوراثة", author: "أ.د مكرم ضياء شكارة", price: "240", category: "علوم" },
+            { id: 115, title: "مبادئ علم الانسجة", author: "حميد احمد الحاج", price: "355", category: "طب" },
+            { id: 116, title: "التحضيرات المجهرية الضوئية", author: "حميد احمد الحاج", price: "180", category: "علوم" },
+            { id: 117, title: "علم وظائف الاعضاء", author: "شتيوي صالح العبدالله", price: "475", category: "طب" },
+            { id: 118, title: "اطلس انسجة الانسان", author: "حميد احمد الحاج", price: "210", category: "طب" },
+            { id: 119, title: "التخطيط التربوي المعاصر", author: "صالح احمد عبابنة", price: "240", category: "تربية" },
+            { id: 120, title: "ادارة البيئة الصفية", author: "محمد بكر نوفل", price: "300", category: "تربية" }
+        ];
+
+        // إضافة المزيد من كتب دار المسيرة
+        const masiraMore = [
+            { id: 121, title: "استراتيجيات الادارة الذاتية للمدرسة والصف", author: "محمد حسنين العجمي", price: "210", category: "تربية" },
+            { id: 122, title: "دراسات في الفكر التربوي المعاصر", author: "محمد محمود الخوالدة", price: "240", category: "تربية" },
+            { id: 123, title: "الحاسوب في الادارة المدرسية", author: "خالد احمد الصرايرة", price: "180", category: "حاسوب" },
+            { id: 124, title: "الفكر التربوي الاسلامي", author: "محمد حسن العمايرة", price: "210", category: "تربية" },
+            { id: 125, title: "مدخل لدراسة الشعر العربي الحديث", author: "ابراهيم محمود خليل", price: "240", category: "ادب" },
+            { id: 126, title: "مسرحيات تشيخوف", author: "احمد علي الهمداني", price: "210", category: "ادب" },
+            { id: 127, title: "التشبية والاستعارة منظور مستانف", author: "يوسف مسلم ابوالعدوس", price: "210", category: "لغة" },
+            { id: 128, title: "الادب الجاهلي", author: "سامي يوسف ابو زيد", price: "240", category: "ادب" },
+            { id: 129, title: "الادب العباسي الشعر", author: "سامي يوسف ابو زيد", price: "240", category: "ادب" },
+            { id: 130, title: "الادب العباسي النثر", author: "سامي يوسف ابو زيد", price: "240", category: "ادب" },
+            { id: 131, title: "الادب المقارن منهج وتطبيق", author: "سامي يوسف ابو زيد", price: "240", category: "ادب" },
+            { id: 132, title: "المدارس النحوية", author: "ابراهيم عبود السامرائي", price: "180", category: "لغة" },
+            { id: 133, title: "المدخل الى الصحة النفسية", author: "مروان ابوحويج وزميله", price: "180", category: "نفس" },
+            { id: 134, title: "العلاج النفسي متى يكون مفيدا", author: "توماس كورنبيشلر", price: "120", category: "نفس" },
+            { id: 135, title: "الاتصال في الارشاد", author: "عدنان محمود حسن عودة", price: "180", category: "نفس" },
+            { id: 136, title: "مبادئ الاحصاء لطلبة الادارة والاقتصاد", author: "ابراهيم محمد البطاينة", price: "210", category: "رياضيات" },
+            { id: 137, title: "مبادئ علم الاقتصاد", author: "محمود حسين الوادي", price: "240", category: "اقتصاد" },
+            { id: 138, title: "الاقتصاد الكلي", author: "محمود حسين الوادي", price: "240", category: "اقتصاد" },
+            { id: 139, title: "الاقتصاد الجزئي", author: "محمود حسين الوادي", price: "240", category: "اقتصاد" },
+            { id: 140, title: "تغذية الانسان", author: "منى احمد صادق", price: "240", category: "علوم" },
+            { id: 141, title: "تكنولوجيا الاغذية", author: "صلاح كامل السماحي", price: "420", category: "علوم" },
+            { id: 142, title: "اقتصاديات الاسرة وترشيد الاستهلاك", author: "ايات عبدالمنعم الديسطي", price: "240", category: "اقتصاد" },
+            { id: 143, title: "الالكترونيات التناظري والرقمي", author: "رعد حمدان ظاهر", price: "300", category: "هندسة" },
+            { id: 144, title: "مبادئ الالكترونيات", author: "رعد حمدان ظاهر", price: "300", category: "هندسة" },
+            { id: 145, title: "الدارات الكهربائية", author: "رعد حمدان ظاهر", price: "300", category: "هندسة" },
+            { id: 146, title: "التحليل العاملي الاستكشافي والتوكيدي", author: "امحمد بوزيان تيغزة", price: "240", category: "رياضيات" },
+            { id: 147, title: "مناهج البحث في التربية وعلم النفس", author: "سامي محمد ملحم", price: "240", category: "تربية" },
+            { id: 148, title: "دليل الرسائل والاطروحات الجامعية", author: "عبدالله زيد الكيلاني", price: "90", category: "تربية" },
+            { id: 149, title: "تاريخ الخلفاء الراشدين", author: "عفاف سيد صبرة", price: "240", category: "تاريخ" },
+            { id: 150, title: "تاريخ العرب الحديث والمعاصر", author: "زين العابدين شمس الدين نجم", price: "240", category: "تاريخ" },
+            { id: 151, title: "تاريخ الحضارة الاسلامية", author: "مصطفى محمد الحناوي", price: "300", category: "تاريخ" },
+            { id: 152, title: "تاريخ الدولة البيزنطية", author: "عفاف سيد صبرة", price: "355", category: "تاريخ" },
+            { id: 153, title: "تاريخ اوروبا الحديث والمعاصر", author: "زين العابدين شمس الدين نجم", price: "355", category: "تاريخ" },
+            { id: 154, title: "الادارة والاشراف في التربية الخاصة", author: "فوزية عبدالله الجلامدة", price: "355", category: "تربية" },
+            { id: 155, title: "تكنولوجيا التعليم المساندة لذوي الاحتياجات الخاصة", author: "عاطف ابو حميد الشرمان", price: "210", category: "تربية" },
+            { id: 156, title: "الاضطرابات السلوكية والانفعالية", author: "مصطفى نوري القمش", price: "210", category: "نفس" },
+            { id: 157, title: "التسويق الاستراتيجي", author: "محمود جاسم الصميدعي", price: "240", category: "تسويق" },
+            { id: 158, title: "البيع الشخصي", author: "مصطفى سعيد الشيخ", price: "210", category: "تسويق" },
+            { id: 159, title: "ادارة المبيعات", author: "محمود جاسم الصميدعي", price: "240", category: "تسويق" },
+            { id: 160, title: "اشكال سطح الارض", author: "أ.د جودت احمد سعادة", price: "240", category: "جغرافيا" },
+            { id: 161, title: "التخطيط في العمران الريفي والحضري", author: "علي سالم الشواورة", price: "240", category: "جغرافيا" },
+            { id: 162, title: "المدخل الى علم البيئة", author: "علي سالم الشواورة", price: "240", category: "علوم" },
+            { id: 163, title: "جغرافية الوطن العربي", author: "عبدالفتاح لطفي عبدالله", price: "210", category: "جغرافيا" },
+            { id: 164, title: "اساسيات الجيولوجيا", author: "ميشيل كامل عطالله", price: "240", category: "علوم" },
+            { id: 165, title: "البيئة والبعد الاسلامي", author: "فؤاد عبداللطيف السرطاوي", price: "120", category: "علوم" },
+            { id: 166, title: "الصيغة الحديثة في كتابة التقارير", author: "حامد جاسم الفواعرة", price: "120", category: "حاسوب" },
+            { id: 167, title: "مكونات الحاسوب", author: "مراد شلباية", price: "180", category: "حاسوب" },
+            { id: 168, title: "تعلم البرمجة باستخدام لغة C", author: "محمد عارف الشريدة", price: "265", category: "حاسوب" },
+            { id: 169, title: "الارشاد الاجتماعي", author: "سماح سالم عوض سالم", price: "210", category: "نفس" },
+            { id: 170, title: "العلاج في خدمة الفرد", author: "موسى نجيب موسى", price: "240", category: "نفس" },
+            { id: 171, title: "مقدمة في الاحصاء الرياضي", author: "جبار عبد مضحي", price: "210", category: "رياضيات" },
+            { id: 172, title: "التفاضل والتكامل المتقدم", author: "روحي ابراهيم الخطيب", price: "355", category: "رياضيات" },
+            { id: 173, title: "مقدمة في الجبر الخطي", author: "علي حسن التميمي", price: "240", category: "رياضيات" },
+            { id: 174, title: "ادارة الايواء", author: "عمار عبدالهادي", price: "155", category: "سياحة" },
+            { id: 175, title: "الوجيز في ترتيل القران العزيز", author: "ثابت احمد ابو الحاج", price: "90", category: "قرآن" },
+            { id: 176, title: "المدخل لدراسة التفسير وعلوم القران", author: "ثابت احمد ابو الحاج", price: "180", category: "تفسير" },
+            { id: 177, title: "بحوث معاصرة في اصول الفقه", author: "عبدالمجيد محمد اسماعيل السوسوة", price: "210", category: "فقه" },
+            { id: 178, title: "مناهج البحث الاعلامي", author: "منال هلال المزاهرة", price: "300", category: "اعلام" },
+            { id: 179, title: "الصحافة العالمية", author: "عبدالرزاق محمد الدليمي", price: "240", category: "اعلام" },
+            { id: 180, title: "الامراض والعناية التمريضية", author: "عصام حمدي الصفدي", price: "180", category: "طب" },
+            { id: 181, title: "مبادئ علم وبائيات الصحة", author: "عصام حمدي الصفدي", price: "240", category: "طب" },
+            { id: 182, title: "علم الخوارق", author: "لورنس ليشان", price: "120", category: "علوم" },
+            { id: 183, title: "التفكير العلمي", author: "عصام زكريا جميل", price: "180", category: "فلسفة" },
+            { id: 184, title: "الفكر العربي الحديث والمعاصر", author: "عزمي زكريا ابو العز", price: "180", category: "فلسفة" },
+            { id: 185, title: "طرق تدريس الفنون", author: "محمد حسين جودي", price: "90", category: "فنون" },
+            { id: 186, title: "الكهربائية والمغناطيسية", author: "غازي ياسين القيسي", price: "240", category: "فيزياء" },
+            { id: 187, title: "فيزياء الحالة الصلبة", author: "غازي ياسين القيسي", price: "355", category: "فيزياء" },
+            { id: 188, title: "الفساد الاداري والمالي", author: "انور محمد صدقي مساعدة", price: "300", category: "قانون" },
+            { id: 189, title: "المصطلحات والمفاهيم القانونية", author: "جمانة بنت عبدالله الجغيمان", price: "210", category: "قانون" },
+            { id: 190, title: "كيمياء الجذور الحرة", author: "علي عبدالحسين سعيد", price: "90", category: "كيمياء" },
+            { id: 191, title: "الكيمياء العامة", author: "ابراهيم صادق الخطيب", price: "240", category: "كيمياء" },
+            { id: 192, title: "الكيمياء العامة - الجزء الثاني", author: "دايخ عبدالحسناوي", price: "240", category: "كيمياء" },
+            { id: 193, title: "اساسيات قواعد اللغة الانجليزية", author: "سعيد بن حمد الربيعي", price: "240", category: "لغة" },
+            { id: 194, title: "ادارة الاستثمار", author: "شقيري نوري موسى", price: "180", category: "مالية" },
+            { id: 195, title: "ادارة المخاطر المالية", author: "خالد وهيب الراوي", price: "240", category: "مالية" },
+            { id: 196, title: "مبادئ المحاسبة المالية - الجزء الاول", author: "نضال محمود الرمحي", price: "240", category: "محاسبة" },
+            { id: 197, title: "المحاسبة المتوسطة", author: "عبدالناصر ابراهيم نور", price: "240", category: "محاسبة" },
+            { id: 198, title: "اسس الفهرسة والتصنيف", author: "عبدالله مشعل عبيدات", price: "120", category: "مكتبات" },
+            { id: 199, title: "استراتيجيات المعلم للتدريس الفعال", author: "عبدالله بن خميس امبوسعيدي", price: "355", category: "تربية" },
+            { id: 200, title: "تنمية مهارات التفكير", author: "عدنان يوسف العتوم", price: "240", category: "نفس" }
+        ];
+        booksDarAlMasira.push(...masiraMore);
+
+        // ========== مكتبة القرطاس الحديثة (100 كتاب) ==========
+        const booksQirtas = [
+            { id: 5001, title: "البيانات العاطفية بين شعر المكان وشعر الطبيعة", author: "عباس سعدي عباس", price: "150", category: "ادب" },
+            { id: 5002, title: "اضاعات في تعليم اللغة العربية ج1", author: "مريم غسان المصري", price: "450", category: "لغة" },
+            { id: 5003, title: "قراءات نقدية في الخطاب الشعري الأردني", author: "د. انعام زعل القيسي", price: "150", category: "ادب" },
+            { id: 5004, title: "المعجم البلاغي للقرآن الكريم ج1", author: "د. بلال عبود السامرائي", price: "263", category: "لغة" },
+            { id: 5005, title: "زيتونة الجبل سيرة الشاعر اديب ناصر", author: "اديب ناصر", price: "169", category: "ادب" },
+            { id: 5006, title: "نخيل من بلادي ج 3 عبدالرزاق عبدالواحد", author: "بشار عزيز ياسر", price: "225", category: "ادب" },
+            { id: 5007, title: "فروق لغوية في مكلمات قرآنية", author: "الدكتور/ أحمد بن محمد طويل", price: "169", category: "لغة" },
+            { id: 5008, title: "القصة العراقية القصيرة اجيال وتاريخ", author: "د. قيس كاظم الجنابي", price: "281", category: "ادب" },
+            { id: 5009, title: "ظواهر اسلوبية في شعر اديب ناصر", author: "د. شفاء احمد علي مسترحي", price: "244", category: "ادب" },
+            { id: 5010, title: "عود على بدء القول في المدارس النحوية", author: "أ.د طارق عبد عون الجنابي", price: "113", category: "لغة" },
+            { id: 5011, title: "الحزن في شعر الحب العذري العصر الاموي", author: "د. سؤيد يوسف الحميري", price: "281", category: "ادب" },
+            { id: 5012, title: "مواجهة تهويد القدس في الرواية العربية", author: "محمد ابو الفيلات", price: "131", category: "سياسة" },
+            { id: 5013, title: "مدارات لغوية من اصالة التراث الى مواقع التواصل", author: "أ.د عمر عتيق", price: "131", category: "لغة" },
+            { id: 5014, title: "جراح المدينة رواية", author: "محمد عبد الجبار الزين", price: "225", category: "ادب" },
+            { id: 5015, title: "الرمزى والتشكيلي في شعر حميد سعيد", author: "الدكتور قيس كاظم الجنابي", price: "113", category: "ادب" },
+            { id: 5016, title: "رسائل الشيخ احمد بن علوان", author: "ترجمة الدكتور محمد علي عزيز", price: "131", category: "فقه" },
+            { id: 5017, title: "ملامح التصوف في ادب نجيب محفوظ", author: "محمد علي عزيز", price: "292", category: "ادب" },
+            { id: 5018, title: "في اللسانيات العربية أسئلة ومقاربات", author: "ياسر أغا", price: "113", category: "لغة" },
+            { id: 5019, title: "البعد النفسي للافعال القلبية في القرآن الكريم", author: "ربيع عرسان فشاشة", price: "113", category: "نفس" },
+            { id: 5020, title: "في شعرية سامي مهدي الجزء الاول", author: "د. نوار سامي مهدي", price: "281", category: "ادب" },
+            { id: 5021, title: "في شعرية سامي مهدي الجزء الثاني", author: "د. نوار سامي مهدي", price: "169", category: "ادب" },
+            { id: 5022, title: "ضوء النواسة قراءات نقدية", author: "محمود ابو عواد", price: "206", category: "ادب" },
+            { id: 5023, title: "الرواية العراقية بعد الاحتلال الامريكي", author: "د. قيس كاظم الجنابي", price: "244", category: "ادب" },
+            { id: 5024, title: "النواسة قراءات نقدية", author: "محمود ابو عواد", price: "169", category: "ادب" },
+            { id: 5025, title: "مورفولوجيا القوة الناعمة", author: "أ.د هاني آل يونس", price: "113", category: "سياسة" },
+            { id: 5026, title: "أركيولوجيا النص اللقيات والضوء", author: "د. نوافل يونس الحمداني", price: "113", category: "ادب" },
+            { id: 5027, title: "المرأة العربية في الشعر الجاهلي", author: "د. فالح نصيف الحجية الكيالني", price: "113", category: "ادب" },
+            { id: 5028, title: "شعراء الابداع في القرنين الثالث والرابع", author: "أ.د يوسف طارق السامرائي", price: "244", category: "ادب" },
+            { id: 5029, title: "البلاغة مفتاح فهم الخطاب القرآني", author: "د. اسماء سعود الخطاب", price: "150", category: "لغة" },
+            { id: 5030, title: "الجسد في الشعر الاندلسي من اللغة الى الصورة", author: "د. محمد طه الساعدي", price: "263", category: "ادب" },
+            { id: 5031, title: "الكتابة اللسانية في الجامعة الجزائرية", author: "أ.شراف ياسر آغا", price: "244", category: "لغة" },
+            { id: 5032, title: "شعرية المعارضة عند ابن عبد ربه في العقد الفريد", author: "فدوى النباح", price: "263", category: "ادب" },
+            { id: 5033, title: "مصاهمة في دراسة دستور جمهورية إيران لسنة 1979", author: "أ.د. رعد ناجي الجده", price: "169", category: "قانون" },
+            { id: 5034, title: "البرلمان العراقي والمسألة الطائفية", author: "أ.د. رعد ناجي الجده", price: "225", category: "قانون" },
+            { id: 5035, title: "التأطير الدستوري للمبادئ والحقوق", author: "أ.د. رعد ناجي الجده", price: "206", category: "قانون" },
+            { id: 5036, title: "التنظيم الدستوري للسلطة التنفيذية", author: "أ.د. رعد ناجي الجده", price: "188", category: "قانون" },
+            { id: 5037, title: "التأطير الدستوري للسلطة التشريعية", author: "أ.د. رعد الجده", price: "263", category: "قانون" },
+            { id: 5038, title: "دورة الدستير دراسة في واقع دستير الحكم", author: "أ.د. رعد الجده", price: "263", category: "قانون" },
+            { id: 5039, title: "مصاهمة في دراسة الدستور القصير في العراق", author: "أ.د. رعد الجده", price: "206", category: "قانون" },
+            { id: 5040, title: "تنظيم التعديل والرقابة الدستورية", author: "أ.د. رعد الجده", price: "150", category: "قانون" },
+            { id: 5041, title: "المؤسسات التمثيلية التشريعية في الخليج", author: "أ.د. رعد الجده", price: "244", category: "قانون" },
+            { id: 5042, title: "دساتير انظمة الحكم العربية", author: "أ.د. رعد الجده", price: "281", category: "قانون" },
+            { id: 5043, title: "رئيس الدولة في دساتير انظمة الحكم العربية", author: "أ.د. رعد الجده", price: "131", category: "قانون" },
+            { id: 5044, title: "دور القاضي الاداري في رقابة الملاءمة", author: "أ.د. مشارى غازي ماجد المطيري", price: "244", category: "قانون" },
+            { id: 5045, title: "التأطير الدستوري لرئيس الدولة في قطر", author: "أ.د. رعد الجده", price: "206", category: "قانون" },
+            { id: 5046, title: "مصاهمة في دراسة مجلس الشورى في قطر", author: "أ.د. رعد الجده", price: "206", category: "قانون" },
+            { id: 5047, title: "تنظيم المؤسسات التمثيلية في دساتير العرب", author: "أ.د. رعد الجده", price: "188", category: "قانون" },
+            { id: 5048, title: "التأطير الدستوري للحكومة في دساتير العرب", author: "أ.د. رعد الجده", price: "188", category: "قانون" },
+            { id: 5049, title: "تنظيم السلطة القضائية في دساتير العرب", author: "أ.د. رعد الجده", price: "150", category: "قانون" },
+            { id: 5050, title: "التعويض عن الخطأ القضائي", author: "أ.د. وليد عيسى موسى العبيات", price: "188", category: "قانون" },
+            { id: 5051, title: "حقوق الانسان بين النظرية والتطبيق", author: "أ.د. حسن طولبة", price: "225", category: "قانون" },
+            { id: 5052, title: "حقوق المرأة في النظرية والتطبيق", author: "أ.د. حسن طولبة", price: "131", category: "قانون" },
+            { id: 5053, title: "الاستثمار في قانون صكوك التمويل الاسلامي", author: "المحامي حسين سعيد عيسى", price: "188", category: "قانون" },
+            { id: 5054, title: "الالتزامات القانونية الناشئة عن العلاقة التعاقدية", author: "محمود راغب زيدان الصعب", price: "94", category: "قانون" },
+            { id: 5055, title: "الالتزام التضامني", author: "ليث عبد الرزاق علي الاباري", price: "150", category: "قانون" },
+            { id: 5056, title: "حماية الامن القومي للدولة", author: "نوزاد امين", price: "131", category: "قانون" },
+            { id: 5057, title: "الإطار القانوني للأمن القومي", author: "د. نجدت صبري ناكري", price: "188", category: "قانون" },
+            { id: 5058, title: "دور القانون الدولي الجنائي في حماية حقوق الإنسان", author: "أ.د. عبد الله سلطان", price: "188", category: "قانون" },
+            { id: 5059, title: "أحكام المفقود", author: "أ.د. هادي محمد عبد الله", price: "150", category: "قانون" },
+            { id: 5060, title: "حقوق الإنسان ومعاييرها الدولية", author: "أ.د. كمال سعدي مصطفى", price: "75", category: "قانون" },
+            { id: 5061, title: "الاختلاف بين الزوجين في متاع المنزل", author: "أ.د. ياسين رشيد عمر", price: "56", category: "قانون" },
+            { id: 5062, title: "مقومات الدستور الديمقراطي", author: "أ.د. سرهنك البرزنجي", price: "188", category: "قانون" },
+            { id: 5063, title: "الانتخابات: ضمانات حمايتها ونزاهتها", author: "سعد منظمو العبدلي", price: "188", category: "قانون" },
+            { id: 5064, title: "عقد الإعلان في القانون", author: "أ.د. شيرازد سليمان", price: "150", category: "قانون" },
+            { id: 5065, title: "البسيط في شرح نظام الإيداع القانوني", author: "هاني إبراهيم الشعلان", price: "113", category: "قانون" },
+            { id: 5066, title: "الجوانب القانونية لمكافحة الفساد في العراق", author: "عبدالواحد كرم", price: "231", category: "قانون" },
+            { id: 5067, title: "التدابير الحدودية لحماية الملكية الفكرية", author: "شيروان هادي إسماعيل", price: "94", category: "قانون" },
+            { id: 5068, title: "عقد التعليم الخاص", author: "كاوان إسماعيل كه ردي", price: "131", category: "قانون" },
+            { id: 5069, title: "الإعلان عن الدولة", author: "أ.د. عبد الرزاق عبد الفتاح", price: "188", category: "قانون" },
+            { id: 5070, title: "الملكية الفكرية", author: "أ.د. كمال سعدي مصطفى", price: "113", category: "قانون" },
+            { id: 5071, title: "التأثيرات الاشعاعية للأنشطة النووية", author: "الدكتور المهندس غيث ضرغام خليل", price: "188", category: "بيئة" },
+            { id: 5072, title: "التطبيق العملي لمتطلبات مواصفة نظام ادارة الطاقة", author: "الدكتور اسماعيل القزاز", price: "169", category: "بيئة" },
+            { id: 5073, title: "اطلس تربات محمية الامام تركي", author: "أ.د. احمد بن عبدالله الدغيري", price: "188", category: "بيئة" },
+            { id: 5074, title: "جغرافية محمية الامام عبدالعزيز", author: "أ.د. احمد الدغيري", price: "300", category: "جغرافيا" },
+            { id: 5075, title: "الطاقة الحرارية الارضية والمحيطية", author: "احمد عبد العزيز الحشاوي", price: "113", category: "بيئة" },
+            { id: 5076, title: "طاقة المحيطات طاقة المد والجزر", author: "احمد عبد العزيز الحشامي", price: "94", category: "بيئة" },
+            { id: 5077, title: "نخلة التمر ركيزة التنمية المستدامة", author: "أ.د عبد الباسط عودة إبراهيم", price: "113", category: "زراعة" },
+            { id: 5078, title: "ادارة النفايات المنزلية الصلبة", author: "أ. ابراهيم صالح الريدي", price: "150", category: "بيئة" },
+            { id: 5079, title: "التنمية المستدامة والتخطيط المكاني", author: "أ.د فالح جمال معروف", price: "131", category: "بيئة" },
+            { id: 5080, title: "التنمية المستدامة استغلال الموارد الطبيعية", author: "نزار عوني اللبدي", price: "150", category: "بيئة" },
+            { id: 5081, title: "الامن البيئي وادارة النفايات البيئية", author: "نزار عوني اللبدي", price: "131", category: "بيئة" },
+            { id: 5082, title: "البيئة بيئة الحيوان والنباتات", author: "د.حسيني جذوع د.صبا رياض خض", price: "225", category: "بيئة" },
+            { id: 5083, title: "في بيئة وبيولوجية الطيور", author: "د. ميد مجيد البيئي", price: "94", category: "بيئة" },
+            { id: 5084, title: "دور السياحة الزراعية في التنمية المستدامة", author: "د. عواطف مساعد الرشيدي", price: "131", category: "زراعة" },
+            { id: 5085, title: "اقتصاديات الانتاج الزراعي", author: "أ.د عبدالله علي الزوبعي", price: "113", category: "زراعة" },
+            { id: 5086, title: "الزراعة الحضرية", author: "أ.د رحمن حسن الموسوي", price: "188", category: "زراعة" },
+            { id: 5087, title: "التنمية الزراعية", author: "أ.د عبدالله علي الزوبعي", price: "206", category: "زراعة" },
+            { id: 5088, title: "السياسة الزراعية", author: "أ.د عبدالله علي الزوبعي", price: "206", category: "زراعة" },
+            { id: 5089, title: "الموسوعة التطبيقية الشاملة في أمراض النبات ج1", author: "أ.د ايد عبد الواحد الهني", price: "263", category: "زراعة" },
+            { id: 5090, title: "الموسوعة التطبيقية الشاملة في أمراض النبات ج2", author: "أ.د ايد عبد الواحد الهني", price: "281", category: "زراعة" },
+            { id: 5091, title: "فلسفة محاصيل الخضر", author: "أ.د عبد الرحمن سلطان محمد", price: "244", category: "زراعة" },
+            { id: 5092, title: "الكما درر تتراوح في رمال الصحراي", author: "أ.د ايد عبد الواحد الهني", price: "150", category: "زراعة" },
+            { id: 5093, title: "الاقتصاد الزراعي النظرية والتطبيق", author: "د. رعد عبدان العتابي", price: "131", category: "زراعة" },
+            { id: 5094, title: "بروتوكول انتاج نباتات الجزر المعدلة جينيا", author: "أ.د مزاحم قاسم المالح", price: "113", category: "زراعة" },
+            { id: 5095, title: "الزراعة الحافظة بدون حرث", author: "أ.د ايد عبد الواحد الهني", price: "150", category: "زراعة" },
+            { id: 5096, title: "مقومات ومعوقات صناعة التمور بمنطقة القصيم", author: "أ.عواطف عبد الله", price: "94", category: "زراعة" },
+            { id: 5097, title: "زراعة الاعلاف و اثرها على التنمية المستدامة", author: "أ.عواطف مساعد الرشيدي", price: "150", category: "زراعة" },
+            { id: 5098, title: "55 نشرة بستنية", author: "أ.م ايد هاني العلاف", price: "113", category: "زراعة" },
+            { id: 5099, title: "فواكه متنوعة وصفها النباتي", author: "أ.م ايد هاني العلاف", price: "113", category: "زراعة" },
+            { id: 5100, title: "ارشادات في خدمة ورعاية النباتات البستانية", author: "أ.م ايد هاني العلاف", price: "113", category: "زراعة" }
+        ];
+
+        // تجميع المكتبات - ترتيب حسب الطلب (علاء الدين أولاً ثم دار الحكمة)
+        const librariesData = [
+            { id: 5, name: "مكتبة علاء الدين الشاملة", icon: "📚", color: "#FFD700", description: "تضم 150 كتاباً في الفقه والتراث والتنمية", books: booksAlaaAlDin },
+            { id: 2, name: "دار الحكمة للطباعة والنشر", icon: "📕", color: "#9C27B0", description: "تضم 264 كتاباً في القانون والعلوم", books: booksDarAlHikma },
+            { id: 3, name: "دار الثقافة للنشر والتوزيع", icon: "📙", color: "#FF6B35", description: "تضم 69 كتاباً متخصصاً في القانون", books: booksDarAlThaqafa },
+            { id: 4, name: "مكتبة القرطاس الحديثة", icon: "📗", color: "#00C853", description: "تضم 100 كتاب في الأدب والقانون والزراعة", books: booksQirtas },
+            { id: 1, name: "دار المسيرة للنشر والتوزيع", icon: "📘", color: "#4FC3F7", description: "تضم 200 كتاباً في مختلف التخصصات", books: booksDarAlMasira }
+        ];
+
+        // حساب إجمالي الكتب
+        let totalBooks = 0;
+        librariesData.forEach(lib => totalBooks += lib.books.length);
+        document.getElementById('totalBooksCount').textContent = totalBooks;
+        document.getElementById('librariesCount').textContent = librariesData.length;
+        document.getElementById('librariesCountBottom').textContent = librariesData.length;
+
+        let currentLibrary = null;
+        let qrCode = null;
+        let savedBooks = [];
+        let pageHistory = [];
+
+        // وظائف الحفظ والتحميل
+        function loadSavedBooks() {
+            const stored = localStorage.getItem('wadiShatiSavedBooks');
+            if (stored) savedBooks = JSON.parse(stored);
+            updateSavedUI();
+        }
+
+        function saveToStorage() {
+            localStorage.setItem('wadiShatiSavedBooks', JSON.stringify(savedBooks));
+            updateSavedUI();
+        }
+
+        function updateSavedUI() {
+            const count = savedBooks.length;
+            const navBadge = document.getElementById('navBadge');
+            if (count > 0) { navBadge.textContent = count; navBadge.style.display = 'flex'; }
+            else { navBadge.style.display = 'none'; }
+            document.getElementById('savedCountBadge').textContent = count;
+            document.getElementById('clearBtn').style.display = count > 0 ? 'flex' : 'none';
+            const savedCountPill = document.getElementById('savedCountPill');
+            if (count > 0) {
+                document.getElementById('savedCountText').textContent = count + ' محفوظ';
+                savedCountPill.style.display = 'flex';
+            } else { savedCountPill.style.display = 'none'; }
+        }
+
+        function toggleSave(bookId, title, author, price, libraryName) {
+            const index = savedBooks.findIndex(b => b.id === bookId);
+            if (index === -1) {
+                savedBooks.push({ id: bookId, title, author, price, libraryName, savedAt: new Date().toISOString() });
+                showToast('✅ تم حفظ الكتاب بنجاح');
+            } else {
+                savedBooks.splice(index, 1);
+                showToast('❌ تم إزالة الكتاب من المحفوظات', true);
+            }
+            saveToStorage();
+            const btn = document.querySelector(`[data-book-id="${bookId}"]`);
+            if (btn) updateSaveButton(btn, index === -1);
+            if (document.getElementById('savedPage').classList.contains('active')) renderSavedBooks();
+        }
+
+        function updateSaveButton(btn, isSaved) {
+            if (isSaved) {
+                btn.classList.add('saved');
+                btn.innerHTML = '<i class="fas fa-check"></i><div class="save-status active"></div>';
+            } else {
+                btn.classList.remove('saved');
+                btn.innerHTML = '<i class="fas fa-bookmark"></i>';
+            }
+        }
+
+        function isBookSaved(bookId) { return savedBooks.some(b => b.id === bookId); }
+
+        function clearAllSaved() {
+            if (confirm('هل أنت متأكد من مسح جميع الكتب المحفوظة؟')) {
+                savedBooks = [];
+                saveToStorage();
+                renderSavedBooks();
+                showToast('🗑️ تم مسح جميع المحفوظات', true);
+            }
+        }
+
+        function renderSavedBooks() {
+            const container = document.getElementById('savedList');
+            if (savedBooks.length === 0) {
+                container.innerHTML = `<div class="empty-state"><i class="fas fa-heart-broken"></i><p>لا توجد كتب محفوظة بعد</p><p style="font-size:13px;margin-top:10px;">اضغط على <i class="fas fa-bookmark"></i> لحفظ كتابك الأول</p></div>`;
+                return;
+            }
+            container.innerHTML = '';
+            savedBooks.forEach((book, index) => {
+                const div = document.createElement('div');
+                div.className = 'book-item';
+                div.style.animationDelay = (index * 0.05) + 's';
+                div.innerHTML = `
+                    <div class="book-cover" id="cover-${book.id}">📚</div>
+                    <div class="book-details">
+                        <div class="book-title">${book.title}</div>
+                        <div class="book-author"><i class="fas fa-user"></i> ${book.author}</div>
+                        <div class="book-price">${book.price} د.ل</div>
+                    </div>
+                    <button class="save-btn saved" onclick="toggleSave(${book.id}, '${book.title.replace(/'/g, "\\'")}', '${book.author.replace(/'/g, "\\'")}', '${book.price}', '${book.libraryName}')" data-book-id="${book.id}">
+                        <i class="fas fa-check"></i><div class="save-status active"></div>
+                    </button>
+                `;
+                container.appendChild(div);
+                setCover(book.id, book.title, book.category);
+            });
+        }
+
+        function setCover(bookId, title, category) {
+            const cover = document.getElementById(`cover-${bookId}`);
+            if (!cover) return;
+            const color = getCoverColor(category);
+            const firstLetter = title ? title.charAt(0) : '📖';
+            cover.style.background = `linear-gradient(135deg, ${color}, #4a148c)`;
+            cover.innerHTML = `<span style="font-size:22px;font-weight:bold;">${firstLetter}</span>`;
+        }
+
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast' + (isError ? ' error' : '');
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+
+        function handleBack() {
+            if (pageHistory.length > 0) navigateTo(pageHistory.pop(), true);
+        }
+
+        function navigateTo(page, fromBack = false) {
+            const currentPage = document.querySelector('.page.active');
+            const currentPageId = currentPage ? currentPage.id : '';
+            let currentPageName = '';
+            if (currentPageId === 'homePage') currentPageName = 'home';
+            else if (currentPageId === 'librariesPage') currentPageName = 'libraries';
+            else if (currentPageId === 'booksPage') currentPageName = 'books';
+            else if (currentPageId === 'savedPage') currentPageName = 'saved';
+            
+            if (!fromBack && currentPageName && currentPageName !== page) pageHistory.push(currentPageName);
+            
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            
+            if (currentPage) {
+                currentPage.classList.add('exit');
+                currentPage.classList.remove('active');
+                setTimeout(() => {
+                    currentPage.style.display = 'none';
+                    currentPage.classList.remove('exit');
+                }, 400);
+            }
+            
+            let targetPage;
+            switch(page) {
+                case 'home':
+                    targetPage = document.getElementById('homePage');
+                    document.querySelector('[data-page="home"]').classList.add('active');
+                    pageHistory = [];
+                    break;
+                case 'libraries':
+                    targetPage = document.getElementById('librariesPage');
+                    document.querySelector('[data-page="libraries"]').classList.add('active');
+                    setTimeout(() => renderLibraries(), 100);
+                    break;
+                case 'books':
+                    targetPage = document.getElementById('booksPage');
+                    break;
+                case 'saved':
+                    targetPage = document.getElementById('savedPage');
+                    document.querySelector('[data-page="saved"]').classList.add('active');
+                    setTimeout(() => renderSavedBooks(), 100);
+                    break;
+                default: return;
+            }
+            if (targetPage) {
+                targetPage.style.display = 'block';
+                requestAnimationFrame(() => targetPage.classList.add('active'));
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderLibraries() {
+            const container = document.getElementById('librariesList');
+            container.innerHTML = '';
+            librariesData.forEach((lib, index) => {
+                const card = document.createElement('div');
+                card.className = 'library-card fade-in';
+                card.style.animationDelay = (index * 0.1) + 's';
+                card.innerHTML = `
+                    <div class="lib-icon" style="background: linear-gradient(135deg, ${lib.color}20, ${lib.color}10); border-color: ${lib.color}40;">${lib.icon}</div>
+                    <div class="lib-info">
+                        <div class="lib-name">${lib.name}</div>
+                        <div class="lib-meta"><span><i class="fas fa-book"></i> ${lib.books.length} كتاب</span><span><i class="fas fa-tag"></i> ${lib.description}</span></div>
+                    </div>
+                    <div class="lib-arrow"><i class="fas fa-chevron-left"></i></div>
+                `;
+                card.onclick = () => showBooks(lib);
+                container.appendChild(card);
+            });
+        }
+
+        function showBooks(library) {
+            currentLibrary = library;
+            document.getElementById('booksTitle').innerHTML = `<i class="fas fa-book-open" style="color: ${library.color};"></i><span>${library.name}</span><span style="font-size:13px;color:var(--text-secondary);margin-right:10px;">${library.books.length} كتاب</span>`;
+            renderBooks(library.books);
+            navigateTo('books');
+            document.getElementById('searchInput').value = '';
+            document.getElementById('searchInput').oninput = (e) => {
+                const filtered = library.books.filter(book => 
+                    book.title.toLowerCase().includes(e.target.value.toLowerCase()) ||
+                    book.author.toLowerCase().includes(e.target.value.toLowerCase()) ||
+                    book.category.toLowerCase().includes(e.target.value.toLowerCase())
+                );
+                renderBooks(filtered);
+            };
+        }
+
+        function renderBooks(books) {
+            const container = document.getElementById('booksList');
+            container.innerHTML = '';
+            if (books.length === 0) {
+                container.innerHTML = `<div class="empty-state"><i class="fas fa-search"></i><p>لا توجد نتائج للبحث</p></div>`;
+                return;
+            }
+            books.forEach((book, index) => {
+                const isSaved = isBookSaved(book.id);
+                const div = document.createElement('div');
+                div.className = 'book-item';
+                div.style.animationDelay = (index * 0.01) + 's';
+                div.innerHTML = `
+                    <div class="book-cover" id="cover-${book.id}">📖</div>
+                    <div class="book-details">
+                        <div class="book-title">${book.title}</div>
+                        <div class="book-author"><i class="fas fa-user"></i> ${book.author}</div>
+                        <div class="book-price">${book.price} د.ل</div>
+                    </div>
+                    <button class="save-btn ${isSaved ? 'saved' : ''}" onclick="toggleSave(${book.id}, '${book.title.replace(/'/g, "\\'")}', '${book.author.replace(/'/g, "\\'")}', '${book.price}', '${currentLibrary.name}')" data-book-id="${book.id}">
+                        <i class="fas ${isSaved ? 'fa-check' : 'fa-bookmark'}"></i>${isSaved ? '<div class="save-status active"></div>' : ''}
+                    </button>
+                `;
+                container.appendChild(div);
+                setCover(book.id, book.title, book.category);
+            });
+        }
+
+        function showQR() {
+            const modal = document.getElementById('qrModal');
+            modal.classList.add('active');
+            if (!qrCode) {
+                qrCode = new QRCode(document.getElementById('qrcode'), {
+                    text: window.location.href, width: 150, height: 150,
+                    colorDark: '#1a1a2e', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M
+                });
+            }
+        }
+
+        function closeModal(event) {
+            if (event.target === document.getElementById('qrModal')) document.getElementById('qrModal').classList.remove('active');
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => showToast('✅ تم نسخ الرابط')).catch(() => showToast('❌ فشل نسخ الرابط', true));
+        }
+
+        window.onload = function() {
+            createParticles();
+            loadSavedBooks();
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hide');
+                document.getElementById('bottomNav').style.display = 'flex';
+            }, 1500);
+            window.onpopstate = function() { if (pageHistory.length > 0) handleBack(); };
+        };
+    </script>
+</body>
+</html>
